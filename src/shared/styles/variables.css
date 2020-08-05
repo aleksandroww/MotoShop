@@ -6,6 +6,7 @@
     --black: #212121;
 
     /* Spacings */
+    --spacing-xxs: 0.6rem;
     --spacing-xs: 1rem;
     --spacing-s: 1.4rem;
     --spacing-m: 1.8rem;
