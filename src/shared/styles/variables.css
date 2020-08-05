@@ -1,0 +1,18 @@
+:root {
+    /* Colors */
+    --primary-color: #3498db;
+    --white: #fff;
+    --silver:#c8d6e5; 
+    --black: #212121;
+
+    /* Spacings */
+    --spacing-xs: 1rem;
+    --spacing-s: 1.4rem;
+    --spacing-m: 1.8rem;
+    --spacing-l: 2.2rem;
+    --spacing-xl: 2.6rem;
+    --spacing-xxl: 3rem;
+
+    /* Layout */
+    --layout-max-width: 1980px;
+}
