@@ -1,51 +1,56 @@
 .header {
-    background: var(--primary-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background: var(--primary-color);
+  padding: 0 var(--spacing-s);
 }
 
-.header > a {
-    padding: var(--spacing-xs); 
-    font-size: 2.2rem;
+.header-content {
+  max-width: var(--layout-max-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
+.header div > a {
+  padding: var(--spacing-xs);
+  font-size: 1.8rem;
+}
 
 .header a {
-    color: var(--white)
+  color: var(--white);
 }
 
 .nav-items {
-    list-style: none;
-    display: flex;
-    justify-content: space-around;
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
 }
 
 .nav-items li {
-    margin: 0 var(--spacing-s);
+  margin: 0 var(--spacing-m);
 }
 
 .nav-items a {
-    font-size: 1.2rem;
-    position: relative;
+  font-size: 1rem;
+  position: relative;
 }
 
 .nav-items a:hover::before {
-    content: '';
-    position: absolute;
-    bottom:-0.6rem;
-    background: var(--white);
-    height: 0.2rem;
-    animation: slide 1 0.3s;
-    width: 100%;
+  content: '';
+  position: absolute;
+  bottom: -0.6rem;
+  background: var(--white);
+  height: 0.2rem;
+  animation: slide 1 0.3s;
+  width: 100%;
 }
 
 @keyframes slide {
-    from {
-        width: 0%;
-    }
+  from {
+    width: 0%;
+  }
 
-    to {
-        width: 100%;
-    }
+  to {
+    width: 100%;
+  }
 }

@@ -5,14 +5,17 @@ import styles from './index.module.css';
 // Components
 import Search from 'shared/components/Search';
 
-// to do home page with only one div or something with the weather!
-
 function Home() {
-    return (
-        <main className={styles['home-screen']}>
-            <Search />
-        </main>
-    )
+  return (
+    <main className={styles['home-screen']}>
+      <div className={styles['upper-section']}>
+        <div>
+          <Search />
+        </div>
+        <div>{/* Add Weather Component */}</div>
+      </div>
+    </main>
+  );
 }
 
 export default Home;
