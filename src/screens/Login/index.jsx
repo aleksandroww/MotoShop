@@ -3,21 +3,25 @@ import React from 'react';
 
 //TO DO validation on username and pass to firebase
 function Login() {
-    return (
-    <form className="Login">
-    <div className="form-control">
-      <label>Username</label>
-      <input type="text"/>
-    </div>
-    <div className="form-control">
-      <label>Password</label>
-      <input type="password"/>
-    </div>
-    <div className="form-control">
-      <button type="button">Login</button>
-    </div>
-  </form>
-    )
+  return (
+    <form>
+      <section>
+        <label htmlFor="username">Username</label>
+        <div>
+          <input name="username" type="text" />
+        </div>
+      </section>
+
+      <section>
+        <label htmlFor="password">Password</label>
+        <div>
+          <input name="password" type="text" />
+        </div>
+      </section>
+
+      <button>Login</button>
+    </form>
+  );
 }
 
 export default Login;

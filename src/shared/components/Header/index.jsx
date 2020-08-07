@@ -16,7 +16,10 @@ function Header() {
               <a href='/register'>Register</a>
             </li>
             <li>
-              <a href='/create'>Sell bike</a>
+              <a href='/create'>Sell My Bike</a>
+            </li>
+            <li>
+              <a href='/contacts'>Contact Us</a>
             </li>
           </ul>
         </nav>

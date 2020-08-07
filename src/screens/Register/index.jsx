@@ -4,12 +4,11 @@ import { useForm } from 'react-hook-form';
 
 const Register = () => {
   const { handleSubmit, register, errors } = useForm();
-  const onSubmit = (values) => console.log(values);
   const [password, setPassword] = useState(0);
-  console.log(useState);
-
+  const handler = (e) => console.log(e);
+  
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(handler)}>
       <label>Email: </label>
       <input
         name="email"
@@ -46,7 +45,7 @@ const Register = () => {
           pattern: {
             value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/i,
             message:
-              'Minimum eight characters, at least one letter and one number!',
+              "Minimum eight characters, at least one letter and one number! Doesn't allowed space between!!",
           },
         })}
       />
@@ -54,15 +53,17 @@ const Register = () => {
 
       <label>Re-Password</label>
       <input
+        onChange={(e) => console.log(password)}
         name="rePassword"
-        type="rePassword"
+        type="password"
         ref={register({
-          validate: (value) => value === password,
+          required: 'Required',
+          validate: (value) => value === password || "Password doesn't match",
         })}
       />
       {errors.rePassword && errors.rePassword.message}
 
-      <button type="submit">Submit</button>
+      <button>Submit</button>
     </form>
   );
 };
