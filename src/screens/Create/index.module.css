@@ -1,6 +1,123 @@
-form {
-  background-color: #eee;
-  display: inline-block;
-  font: 12px Helvetica, Arial, san-serif;
-  padding: 0 8px;
+.create {
+  max-width: var(--layout-max-width);
+  margin: 0 auto;
+}
+
+.create form {
+  background: var(--primary-color);
+  margin: var(--spacing-m) auto;
+  width: 45rem;
+  padding: var(--spacing-l);
+  box-shadow: 1px 1px 10px var(--black);
+  border-radius: var(--spacing-xxs);
+}
+
+.create form h1 {
+  margin: var(--spacing-s) 0 var(--spacing-xxl);
+  color: var(--white);
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.type {
+  grid-area: type;
+}
+
+.brand {
+  grid-area: brand;
+}
+
+.condition {
+  grid-area: condition;
+}
+
+.model {
+  grid-area: model;
+}
+
+.year {
+  grid-area: year;
+}
+
+.price {
+  grid-area: price;
+}
+
+.capacity {
+  grid-area: capacity;
+}
+
+.engine {
+  grid-area: engine;
+}
+
+.power {
+  grid-area: power;
+}
+
+.kilometers {
+  grid-area: kilometers;
+}
+
+.contact {
+  grid-area: contact;
+}
+
+.name {
+  grid-area: name;
+}
+
+.city {
+  grid-area: city;
+}
+
+.description {
+  grid-area: description;
+}
+
+.button {
+  grid-area: button;
+  justify-self: end;
+}
+
+.description textarea {
+  height: 7rem;
+  resize: none;
+  padding: var(--spacing-xxs);
+  margin-top: var(--spacing-xxs);
+  border-radius: 0.2rem;
+}
+
+.create-inputs {
+  display: grid;
+  grid-template-areas:
+    'type brand model'
+    'engine power capacity'
+    'year kilometers price'
+    'name contact city'
+    'description description condition'
+    '. . button';
+}
+
+.create div div {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-xxs);
+}
+
+.create label {
+  color: var(--white);
+}
+
+.create select,
+.create input {
+  font-size: 1rem;
+  padding: 0.3rem;
+  border-radius: 0.2rem;
+  border: none;
+  margin: var(--spacing-xxs) 0;
+  padding-left: var(--spacing-xxs);
+  width: 8.7rem;
+  background: var(--white);
+  outline: none;
 }

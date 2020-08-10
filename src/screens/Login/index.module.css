@@ -1,0 +1,29 @@
+.login {
+  display: flex;
+  justify-content: center;
+}
+
+.login form {
+  margin-top: 7rem;
+  border-radius: var(--spacing-xxs);
+  box-shadow: 1px 1px 10px var(--black);
+  width: 20rem;
+}
+
+.login form {
+  background: var(--primary-color);
+  padding: var(--spacing-m);
+}
+
+.login form h1 {
+  margin: var(--spacing-m) 0 var(--spacing-xl);
+  color: var(--white);
+}
+
+.login form section {
+  margin-bottom: var(--spacing-xs);
+}
+
+.button {
+  float: right;
+}

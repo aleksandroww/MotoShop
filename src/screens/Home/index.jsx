@@ -12,7 +12,6 @@ function Home() {
         <div>
           <Search />
         </div>
-        <div>{/* Add Weather Component */}</div>
       </div>
     </main>
   );

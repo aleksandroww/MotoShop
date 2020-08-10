@@ -1,243 +1,238 @@
+// React and Style
 import React from 'react';
-//import styles from './index.module.css';
+import styles from './index.module.css';
+
+// Validations
 import { useForm } from 'react-hook-form';
 
-//create must have(check in mobile.bg)... https://www.mobile.bg/pcgi/mobile.cgi
+// Components
+import Button from 'shared/components/Button';
+
 function Create() {
   const { handleSubmit, register, errors } = useForm();
+
   const handler = (e) => console.log(e);
 
+  const selects = [
+    {
+      name: 'type',
+      text: 'Type',
+      style: 'type',
+      options: [
+        { value: 'select', text: 'Select' },
+        { value: 'cross', text: 'Cross' },
+        { value: 'sport', text: 'Sport' },
+        { value: 'naked', text: 'Naked' },
+      ],
+    },
+    {
+      name: 'brand',
+      text: 'Brand',
+      style: 'brand',
+      options: [
+        { value: 'select', text: 'Select' },
+        { value: 'kawasaki', text: 'Kawasaki' },
+        { value: 'honda', text: 'Honda' },
+        { value: 'aprilia', text: 'Aprilia' },
+        { value: 'bmw', text: 'BMW' },
+        { value: 'suzuki', text: 'Suzuki' },
+      ],
+    },
+    {
+      name: 'engine',
+      text: 'Engine Type',
+      style: 'engine',
+      options: [
+        { value: 'select', text: 'Select' },
+        { value: '2', text: '2 Stroke' },
+        { value: '4', text: '4 Stroke' },
+      ],
+    },
+  ];
+
+  const inputs = [
+    {
+      name: 'model',
+      text: 'Model',
+      style: 'model',
+      type: 'text',
+      validations: {
+        required: 'Should not be empty!',
+      },
+      placeholder: 'Ninja, CBR ...',
+    },
+    {
+      name: 'year',
+      text: 'Year',
+      style: 'year',
+      type: 'text',
+      validations: {
+        required: 'Should not be empty!',
+        pattern: {
+          value: /^[2][0][0-1][0-9]$|^[2][0][2][0]/i,
+          message: 'Invalid year! Should be between 2000 and 2020!',
+        },
+      },
+    },
+    {
+      name: 'price',
+      text: 'Price',
+      style: 'price',
+      type: 'text',
+      validations: {
+        required: 'Should not be empty!',
+        pattern: {
+          value: /^\d{1,6}$/i,
+          message: 'Should be number!',
+        },
+      },
+    },
+    {
+      name: 'capacity',
+      text: 'Capacity (cm³)',
+      style: 'capacity',
+      type: 'text',
+      validations: {
+        required: 'Should not be empty!',
+        pattern: {
+          value: /^[5-9][0-9]$|^[1-9][0-9][0-9]$|^[1][0-5][0-9][0-9]$/i,
+          message: 'Should be between 50cc and 1599cc!',
+        },
+      },
+    },
+    {
+      name: 'power',
+      text: 'Power (hp)',
+      style: 'power',
+      type: 'text',
+      validations: {
+        required: 'Should not be empty!',
+        pattern: {
+          value: /^\d{1,6}$/i,
+          message: 'Should be number!',
+        },
+      },
+    },
+    {
+      name: 'kilometers',
+      text: 'Kilometers',
+      style: 'kilometers',
+      type: 'text',
+      validations: {
+        required: 'Should not be empty!',
+        pattern: {
+          value: /^\d{0,6}$/i,
+          message: 'Should be number!',
+        },
+      },
+    },
+    {
+      name: 'contact',
+      text: 'Contact Number',
+      style: 'contact',
+      type: 'text',
+      validations: {
+        required: 'Should not be empty!',
+        pattern: {
+          value: /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/i,
+          message: 'Invalid phone number!',
+        },
+      },
+    },
+    {
+      name: 'name',
+      text: 'Name',
+      style: 'name',
+      type: 'text',
+      validations: {
+        required: 'Should not be empty!',
+        pattern: {
+          value: /^[a-zA-Z]{0,85}$/i,
+          message: 'Should contain only letters!',
+        },
+      },
+    },
+    {
+      name: 'city',
+      text: 'City',
+      style: 'city',
+      type: 'text',
+      validations: {
+        required: 'Should not be empty!',
+        pattern: {
+          value: /^[a-zA-Z]{0,85}$/i,
+          message: 'Should contain only letters!',
+        },
+      },
+    },
+  ];
+
+  const renderSelect = (select, i) => (
+    <div key={i} className={styles[select.style]}>
+      <label htmlFor={select.name}>{select.text}</label>
+      <select name={select.name} id={select.name}>
+        {select.options.map((option, y) => (
+          <option name={select.name} value={option.value} key={y}>
+            {option.text}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+
+  const renderInput = (input, i) => (
+    <div className={styles[input.style]} key={i}>
+      <label htmlFor={input.name}>{input.text}</label>
+      <input
+        type={input.text}
+        placeholder={input.placeholder ? input.placeholder : ''}
+        name={input.name}
+        ref={register(input.validations)}
+      />
+      {errors[input.name] && errors[input.name].message}
+    </div>
+  );
+
   return (
-    <section>
-      <h1>Sell My Bike</h1>
-      <form action="" method="" onSubmit={handleSubmit(handler)}>
-        <section>
-          <p>Please complete the online form!</p>
-        </section>
+    <section className={styles.create}>
+      <form>
+        <h1>Sell My Bike</h1>
 
-        <section>
-          <label htmlFor="type">Type</label>
-          <select name="type" id="type">
-            <option value="select" key="select">
-              select
-            </option>
-            <option value="offRoad" key="offRoad">
-              Off-road
-            </option>
-            <option value="enduro" key="enduro">
-              Enduro
-            </option>
-            <option value="sportTouring" key="sportTouring">
-              Sport Touring
-            </option>
-            <option value="touring" key="touring">
-              Touring
-            </option>
-            <option value="cruiser" key="cruiser">
-              Cruiser
-            </option>
-            <option value="naked" key="naked">
-              Naked
-            </option>
-            <option value="sportBike" key="sportBike">
-              Sport bike
-            </option>
-          </select>
-        </section>
+        <div className={styles['create-inputs']}>
+          {selects.map(renderSelect)}
+          {inputs.map(renderInput)}
 
-        <section>
-          <label htmlFor="brand">Brand</label>
-          <select name="brand" id="brand">
-            <option value="select" key="select">
-              select
-            </option>
-            <option value="bmw" key="bmw">
-              BMW
-            </option>
-            <option value="aprilia" key="aprilia">
-              Aprilia
-            </option>
-            <option value="ducati" key="ducati">
-              Ducati
-            </option>
-            <option value="honda" key="honda">
-              Honda
-            </option>
-            <option value="kawasaki" key="kawasaki">
-              Kawasaki
-            </option>
-            <option value="suzuki" key="suzuki">
-              Suzuki
-            </option>
-            <option value="yamaha" key="yamaha">
-              Yamaha
-            </option>
-            <option value="ktm" key="ktm">
-              KTM
-            </option>
-          </select>
-        </section>
+          <div className={styles.condition}>
+            <label htmlFor='condition'>Condition</label>
+            <select name='condition' id='condition'>
+              <option value='select' key='select'>
+                select
+              </option>
+              <option value='new' key='new'>
+                New
+              </option>
+              <option value='used' key='used'>
+                Used
+              </option>
+            </select>
 
-        <section>
-          <label htmlFor="condition">Condition</label>
-          <select name="condition" id="condition">
-            <option value="select" key="select">
-              select
-            </option>
-            <option value="new" key="new">
-              New
-            </option>
-            <option value="used" key="used">
-              Used
-            </option>
-          </select>
-        </section>
+            <div>
+              <label htmlFor=''>Upload image</label>
+              <input type='file' name='image' />
+            </div>
+          </div>
 
-        <section>
-          <label htmlFor="model">Model</label>
-          <input
-            type="text"
-            placeholder="Ninja, CBR ..."
-            name="model"
-            ref={register({
-              required: 'Should not be empty!',
-            })}
-          />
-          {errors.model && errors.model.message}
-        </section>
+          <div className={styles.description}>
+            <label htmlFor='more'>More information about your bike</label>
+            <textarea
+              placeholder='About any extras on your bike'
+              name='additionalInfo'></textarea>
+          </div>
 
-        <section>
-          <label htmlFor="firstRegistration">Year</label>
-          <input
-            type="text"
-            name="year"
-            ref={register({
-              required: 'Should not be empty!',
-              pattern: {
-                value: /^[2][0][0-1][0-9]$|^[2][0][2][0]/i,
-                message: 'Invalid year! Should be between 2000 and 2020!',
-              },
-            })}
-          />
-          {errors.year && errors.year.message}
-        </section>
-
-        <section>
-          <label htmlFor="price">Price</label>
-          <input
-            type="text"
-            name="price"
-            ref={register({
-              required: 'Should not be empty!',
-            })}
-          />
-          {errors.price && errors.price.message}
-        </section>
-
-        <section>
-          <label htmlFor="capacity">Cubic capacity (cm³)</label>
-          <input
-            type="text"
-            name="capacity"
-            ref={register({
-              required: 'Should not be empty!',
-              pattern: {
-                value: / ^[5-9][0-9]$|^[1-9][0-9][0-9]$|^[1][0-5][0-9][0-9]$/i,
-                message: 'Shoud be between 50cc and 1599cc!',
-              },
-            })}
-          />
-          {errors.capacity && errors.capacity.message}
-        </section>
-
-        <section>
-          <label htmlFor="typeEngine">Type of engine</label>
-          <select name="type" id="type">
-            <option value="select" key="select">
-              select
-            </option>
-            <option value="2" key="2">
-              2
-            </option>
-            <option value="4" key="4">
-              4
-            </option>
-          </select>
-          <label htmlFor="stroke">Stroke</label>
-        </section>
-
-        <section>
-          <label htmlFor="power">Power (hp)</label>
-          <input
-            type="text"
-            name="power"
-            ref={register({
-              required: 'Should not be empty!',
-            })}
-          />
-          {errors.power && errors.power.message}
-        </section>
-
-        <section>
-          <label htmlFor="kilometers">Kilometers</label>
-          <input
-            type="text"
-            name="kilometers"
-            ref={register({
-              required: 'Should not be empty!',
-            })}
-          />
-          {errors.kilometers && errors.kilometers.message}
-        </section>
-
-        <section>
-          <label htmlFor="contact">Contact Number</label>
-          <input
-            type="text"
-            name="contact"
-            ref={register({
-              required: 'Should not be empty!',
-              pattern: {
-                value: /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/i,
-                message: 'Invalid phone number!',
-              },
-            })}
-          />
-          {errors.contact && errors.contact.message}
-        </section>
-
-        <section>
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            name="name"
-            ref={register({
-              required: 'Should not be empty!',
-            })}
-          />
-          {errors.name && errors.name.message}
-        </section>
-
-        <section>
-          <label htmlFor="city">City</label>
-          <input
-            type="text"
-            name="city"
-            ref={register({
-              required: 'Should not be empty!',
-            })}
-          />
-          {errors.city && errors.city.message}
-        </section>
-
-        <section>
-          <label htmlFor="more">More information about your bike</label>
-          <textarea placeholder="About any extras on your bike"></textarea>
-        </section>
-
-        <section>{/* add photos */}</section>
-
-        <button>Submit</button>
+          <div className={styles.button}>
+            <Button>Submit</Button>
+          </div>
+        </div>
       </form>
     </section>
   );

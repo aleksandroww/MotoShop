@@ -1,0 +1,20 @@
+.button {
+  background: var(--secondary-color);
+  font-size: 1rem;
+  margin-top: var(--spacing-s);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2.5rem;
+  width: 10rem;
+  border: none;
+  outline: none;
+  font-weight: 600;
+  border-radius: 2rem;
+  color: var(--white);
+}
+
+.button:hover {
+  background: var(--orange-hover);
+  cursor: pointer;
+}

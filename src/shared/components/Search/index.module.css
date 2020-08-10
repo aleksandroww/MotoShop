@@ -3,7 +3,7 @@
   width: 40rem;
   padding: var(--spacing-s);
   border-radius: var(--spacing-xxs);
-  box-shadow: 0px 3px 10px var(--black);
+  box-shadow: 1px 1px 10px var(--black);
   position: relative;
   max-width: var(--layout-max-width);
 }
@@ -37,7 +37,7 @@
 .search section select,
 .search section input {
   font-size: 1rem;
-  padding: 0.2rem;
+  padding: 0.3rem;
   border-radius: 0.2rem;
   border: none;
   margin: 0.1rem;
@@ -45,27 +45,6 @@
   width: 8.7rem;
   background: var(--white);
   outline: none;
-}
-
-.search button {
-  display: inline-block;
-  position: absolute;
-  bottom: var(--spacing-l);
-  right: var(--spacing-l);
-  padding: var(--spacing-xxs) var(--spacing-xxl);
-  background: var(--secondary-color);
-  border: none;
-  border-radius: var(--spacing-s);
-  font-size: 1rem;
-  font-weight: 600;
-  outline: none;
-  color: var(--white);
-  transition: 0.2s;
-}
-
-.search button:hover {
-  cursor: pointer;
-  background: var(--orange-hover);
 }
 
 .row {
@@ -79,4 +58,8 @@
 
 .condition label:hover {
   cursor: pointer;
+}
+
+.button {
+  justify-self: end;
 }
