@@ -27,11 +27,8 @@
 .button {
   float: right;
 }
-<<<<<<< HEAD
 
 .error {
   color: var(--secondary-color);
   margin-bottom: var(--spacing-xs);
 }
-=======
->>>>>>> 707e4cf04287042bb4521bff7be322795b7f62c4

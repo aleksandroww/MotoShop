@@ -27,7 +27,6 @@
 .button {
   float: right;
 }
-<<<<<<< HEAD
 
 .error {
   color: var(--secondary-color);
@@ -50,5 +49,3 @@ hr {
   color: var(--white);
   font-size: 1rem;
 }
-=======
->>>>>>> 707e4cf04287042bb4521bff7be322795b7f62c4

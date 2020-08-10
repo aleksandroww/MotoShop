@@ -1,15 +1,10 @@
 // React and Style
-<<<<<<< HEAD
 import React, { useContext } from 'react';
-=======
-import React from 'react';
->>>>>>> 707e4cf04287042bb4521bff7be322795b7f62c4
 import styles from './index.module.css';
 
 // Validations
 import { useForm } from 'react-hook-form';
 
-<<<<<<< HEAD
 // Router and Routes
 import { Redirect } from 'react-router-dom';
 import { routes } from 'constants/routes';
@@ -17,17 +12,12 @@ import { routes } from 'constants/routes';
 // Context
 import { UserContext } from 'App';
 
-=======
->>>>>>> 707e4cf04287042bb4521bff7be322795b7f62c4
 // Components
 import Button from 'shared/components/Button';
 
 function Create() {
   const { handleSubmit, register, errors } = useForm();
-<<<<<<< HEAD
   const { user } = useContext(UserContext);
-=======
->>>>>>> 707e4cf04287042bb4521bff7be322795b7f62c4
 
   const handler = (e) => console.log(e);
 
@@ -207,7 +197,6 @@ function Create() {
         name={input.name}
         ref={register(input.validations)}
       />
-<<<<<<< HEAD
       <p className={styles.error}>
         {errors[input.name] && errors[input.name].message}
       </p>
@@ -221,15 +210,6 @@ function Create() {
   return (
     <section className={styles.create}>
       <form onSubmit={handleSubmit(handler)}>
-=======
-      {errors[input.name] && errors[input.name].message}
-    </div>
-  );
-
-  return (
-    <section className={styles.create}>
-      <form>
->>>>>>> 707e4cf04287042bb4521bff7be322795b7f62c4
         <h1>Sell My Bike</h1>
 
         <div className={styles['create-inputs']}>
