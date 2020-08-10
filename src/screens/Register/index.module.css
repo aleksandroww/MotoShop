@@ -1,0 +1,34 @@
+.register {
+  display: flex;
+  justify-content: center;
+}
+
+.register form {
+  margin-top: 4rem;
+  border-radius: var(--spacing-xxs);
+  box-shadow: 1px 1px 10px var(--black);
+  width: 25rem;
+}
+
+.register form {
+  background: var(--primary-color);
+  padding: var(--spacing-m);
+}
+
+.register form h1 {
+  margin: var(--spacing-m) 0 var(--spacing-xl);
+  color: var(--white);
+}
+
+.register form section {
+  margin-bottom: var(--spacing-xs);
+}
+
+.button {
+  float: right;
+}
+
+.error {
+  color: var(--secondary-color);
+  margin-bottom: var(--spacing-xs);
+}

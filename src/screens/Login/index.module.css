@@ -1,0 +1,51 @@
+.login {
+  display: flex;
+  justify-content: center;
+}
+
+.login form {
+  margin-top: 7rem;
+  border-radius: var(--spacing-xxs);
+  box-shadow: 1px 1px 10px var(--black);
+  width: 20rem;
+}
+
+.login form {
+  background: var(--primary-color);
+  padding: var(--spacing-m);
+}
+
+.login form h1 {
+  margin: var(--spacing-m) 0 var(--spacing-xl);
+  color: var(--white);
+}
+
+.login form section {
+  margin-bottom: var(--spacing-xs);
+}
+
+.button {
+  float: right;
+}
+
+.error {
+  color: var(--secondary-color);
+  margin-bottom: var(--spacing-xs);
+}
+
+hr {
+  border: 1px solid rgba(255, 255, 255, 0.651);
+  border-radius: 5px;
+  margin: 6rem 1rem 0rem;
+}
+
+.option {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--spacing-xs);
+}
+
+.option a {
+  color: var(--white);
+  font-size: 1rem;
+}

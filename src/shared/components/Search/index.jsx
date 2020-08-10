@@ -2,124 +2,118 @@
 import React from 'react';
 import styles from './index.module.css';
 
+// Components
+import Button from 'shared/components/Button';
+
+const selectSections = [
+  {
+    name: 'type',
+    text: 'Type',
+    options: [
+      { value: 'all', text: 'All' },
+      { value: 'cross', text: 'Cross' },
+      { value: 'sport', text: 'Sport' },
+      { value: 'naked', text: 'Naked' },
+    ],
+  },
+  {
+    name: 'brand',
+    text: 'Brand',
+    options: [
+      { value: 'all', text: 'All' },
+      { value: 'kawasaki', text: 'Kawasaki' },
+      { value: 'honda', text: 'Honda' },
+      { value: 'aprilia', text: 'Aprilia' },
+      { value: 'bmw', text: 'BMW' },
+      { value: 'suzuki', text: 'Suzuki' },
+    ],
+  },
+];
+
+const inputSections = [
+  {
+    text: 'Model',
+    inputs: [{ type: 'text', placeholder: 'Ninja, CBR ...', name: 'model' }],
+  },
+  {
+    text: 'Year',
+    inputs: [
+      { type: 'text', placeholder: 'from', name: 'yearFrom' },
+      { type: 'text', placeholder: 'to', name: 'yearTo' },
+    ],
+  },
+  {
+    text: 'Price',
+    inputs: [
+      { type: 'text', placeholder: 'from', name: 'priceFrom' },
+      { type: 'text', placeholder: 'to', name: 'priceTo' },
+    ],
+  },
+  {
+    text: 'Capacity (cm³)',
+    inputs: [
+      { type: 'text', placeholder: 'from', name: 'capacityFrom' },
+      { type: 'text', placeholder: 'to', name: 'capacityTo' },
+    ],
+  },
+  {
+    text: 'Power (hp)',
+    inputs: [
+      { type: 'text', placeholder: 'from', name: 'powerFrom' },
+      { type: 'text', placeholder: 'to', name: 'powerTo' },
+    ],
+  },
+];
+
 function Search() {
   return (
     <section className={styles.search}>
       <h1>Search</h1>
       <form>
         <div className={styles.row}>
-          <section>
-            <label htmlFor='type'>Type</label>
-            <select name='type' id='type'>
-              <option value='all' key='all'>
-                All
-              </option>
-              <option value='offRoad' key='offRoad'>
-                Off-road
-              </option>
-              <option value='enduro' key='enduro'>
-                Enduro
-              </option>
-              <option value='sportTouring' key='sportTouring'>
-                Sport Touring
-              </option>
-              <option value='touring' key='touring'>
-                Touring
-              </option>
-              <option value='cruiser' key='cruiser'>
-                Cruiser
-              </option>
-              <option value='naked' key='naked'>
-                Naked
-              </option>
-              <option value='sportBike' key='sportBike'>
-                Sport bike
-              </option>
-            </select>
-          </section>
-
-          <section>
-            <label htmlFor='brand'>Brand</label>
-            <select name='brand' id='brand'>
-              <option value='all' key='all'>
-                All
-              </option>
-              <option value='bmw' key='bmw'>
-                BMW
-              </option>
-              <option value='aprilia' key='aprilia'>
-                Aprilia
-              </option>
-              <option value='ducati' key='ducati'>
-                Ducati
-              </option>
-              <option value='honda' key='honda'>
-                Honda
-              </option>
-              <option value='kawasaki' key='kawasaki'>
-                Kawasaki
-              </option>
-              <option value='suzuki' key='suzuki'>
-                Suzuki
-              </option>
-              <option value='yamaha' key='yamaha'>
-                Yamaha
-              </option>
-              <option value='ktm' key='ktm'>
-                KTM
-              </option>
-            </select>
-          </section>
+          {selectSections.map((select, i) => (
+            <section key={i}>
+              <label htmlFor={select.name}>{select.text}</label>
+              <select name={select.name} id={select.name}>
+                {select.options.map((option, y) => (
+                  <option value={option.value} key={y}>
+                    {option.text}
+                  </option>
+                ))}
+              </select>
+            </section>
+          ))}
         </div>
 
-        <section>
-          <label htmlFor='model'>Model</label>
-          <input type='text' placeholder='Ninja, CBR ...' name='model' />
-        </section>
+        {inputSections.map((section, i) => (
+          <section key={i}>
+            <label>{section.text}</label>
+            <div className={styles.row}>
+              {section.inputs.map((input, y) => (
+                <input
+                  type={input.type}
+                  placeholder={input.placeholder}
+                  name={input.name}
+                  key={y}
+                />
+              ))}
+            </div>
+          </section>
+        ))}
 
         <section>
-          <label htmlFor='firstRegistration'>Year</label>
-          <div className={styles.row}>
-            <input type='text' placeholder='from' name='yearFrom' />
-            <input type='text' placeholder='to' name='yearTo' />
+          <label>Condition</label>
+          <div className={`${styles.row} ${styles.condition}`}>
+            <input type="checkbox" id="used" name="used" />
+            <label htmlFor="used">Used</label>
+            <input type="checkbox" id="new" name="new" />
+            <label htmlFor="new">New</label>
           </div>
         </section>
 
-        <section>
-          <label htmlFor='price'>Price</label>
-          <div className={styles.row}>
-            <input type='text' placeholder='from' name='priceFrom' />
-            <input type='text' placeholder='to' name='priceTo' />
-          </div>
-        </section>
-
-        <section>
-          <label htmlFor='cc'>Cubic capacity (cm³)</label>
-          <div className={styles.row}>
-            <input type='text' placeholder='from' name='cubicFrom' />
-            <input type='text' placeholder='to' name='cubicTo' />
-          </div>
-        </section>
-
-        <section>
-          <label htmlFor='power'>Power (hp)</label>
-          <div className={styles.row}>
-            <input type='text' placeholder='from' name='powerFrom' />
-            <input type='text' placeholder='to' name='powerTo' />
-          </div>
-        </section>
-
-        <section>
-          <label htmlFor='condition'>Condition</label>
-          <div className={styles.row}>
-            <input type='checkbox' id='used' name='used' />
-            <label htmlFor='used'>Used</label>
-            <input type='checkbox' id='new' name='new' />
-            <label htmlFor='new'>New</label>
-          </div>
-        </section>
-
-        <button>Submit</button>
+        <div className={styles.button}>
+          <Button>Search</Button>
+        </div>
       </form>
     </section>
   );

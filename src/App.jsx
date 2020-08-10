@@ -1,37 +1,67 @@
 // React
-import React from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
-// Router
+// Firebase
+import firebase from 'firebase';
+import 'firebase/config';
+
+// Router and Routes
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { routes } from 'constants/routes';
 
 // Screens
 import Home from 'screens/Home';
 import Login from 'screens/Login';
-import Products from 'screens/Products';
-import Logout from 'screens/Logout';
 import NotFound from 'screens/NotFound';
-import Contacts from 'screens/Contacts';
+import Loading from 'screens/Loading';
+import Register from 'screens/Register';
+import Create from 'screens/Create';
+import allPosts from 'screens/AllPosts';
+import myPosts from 'screens/MyPosts';
 
 // Components
 import Header from 'shared/components/Header';
-import Register from 'screens/Register';
-import Create from 'screens/Create';
+import Message from 'shared/components/Message';
+
+// Context
+export const UserContext = createContext();
 
 function App() {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState(null);
+
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user && user.emailVerified) {
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+      setLoading(false);
+    });
+  }, []);
+
   return (
-    <Router>
-      <Header />
-      <Switch>
-        <Route path='/login' component={Login} />
-        <Route path='/register' component={Register} />\
-        <Route path='/products' component={Products} />
-        <Route path='/create' component={Create} />
-        <Route path='/logout' component={Logout} />
-        <Route path='/contacts' component={Contacts} />
-        <Route exact path='/' component={Home} />
-        <Route path='*' component={NotFound} />
-      </Switch>
-    </Router>
+    <UserContext.Provider value={{ user, setMessage }}>
+      <Router>
+        <Header />
+        {message && <Message message={message} />}
+        {loading ? (
+          <Loading />
+        ) : (
+          <Switch>
+            <Route exact path={routes.home} component={Home} />
+            <Route path={routes.login} component={Login} />
+            <Route path={routes.register} component={Register} />
+            <Route path={routes.create} component={Create} />
+            <Route path={routes.allPosts} component={allPosts} />
+            <Route path={routes.myPosts} component={myPosts} />
+            <Route path="*" component={NotFound} />
+          </Switch>
+        )}
+      </Router>
+    </UserContext.Provider>
   );
 }
 

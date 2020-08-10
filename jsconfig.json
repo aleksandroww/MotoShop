@@ -1,8 +1,13 @@
 {
-        "compilerOptions": {
-        "baseUrl": "./src",
-        "paths": {
-          "screens/*": ["screens/*"]
-      }
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "screens/*": ["screens/*"],
+      "shared/*": ["shared/*"],
+      "firebase/*": ["firebase/*"],
+      "services/*": ["services/*"],
+      "hooks/*": ["hooks/*"],
+      "constants/*": ["constants/*"]
     }
+  }
 }
