@@ -1,4 +1,5 @@
 // React and Style
+<<<<<<< HEAD
 import React, { useState, useContext } from 'react';
 import styles from './index.module.css';
 
@@ -17,6 +18,19 @@ import { userService } from 'services';
 
 // Context
 import { UserContext } from 'App';
+=======
+import React, { useState } from 'react';
+import styles from './index.module.css';
+
+// Validations
+import { useForm } from 'react-hook-form';
+
+// Routes
+import { routes } from 'constants/routes';
+
+// Services
+import { user } from 'services';
+>>>>>>> 707e4cf04287042bb4521bff7be322795b7f62c4
 
 // Components
 import Button from 'shared/components/Button';
@@ -26,14 +40,21 @@ const Register = () => {
   const { handleSubmit, register, errors } = useForm();
   const [password, setPassword] = useState(null);
   const [error, setError] = useState(null);
+<<<<<<< HEAD
   const { user } = useContext(UserContext);
+=======
+>>>>>>> 707e4cf04287042bb4521bff7be322795b7f62c4
 
   const registerHandler = async (data) => {
     const { email, password } = data;
 
     try {
+<<<<<<< HEAD
       await userService.register(email, password);
       await firebase.auth().currentUser.sendEmailVerification();
+=======
+      await user.register(email, password);
+>>>>>>> 707e4cf04287042bb4521bff7be322795b7f62c4
       window.location = routes.login;
     } catch (error) {
       setError(error.message);
@@ -82,10 +103,13 @@ const Register = () => {
     },
   ];
 
+<<<<<<< HEAD
   if (user) {
     return <Redirect to={routes.home} />;
   }
 
+=======
+>>>>>>> 707e4cf04287042bb4521bff7be322795b7f62c4
   return (
     <main className={styles.register}>
       <form onSubmit={handleSubmit(registerHandler)}>
@@ -94,16 +118,24 @@ const Register = () => {
         {inputs.map((input, i) => (
           <div key={i}>
             <Input {...input} validations={register(input.validations)} />
+<<<<<<< HEAD
             <p className={styles.error}>
               {errors[input.name] && errors[input.name].message}
             </p>
+=======
+            {errors[input.name] && errors[input.name].message}
+>>>>>>> 707e4cf04287042bb4521bff7be322795b7f62c4
           </div>
         ))}
 
         <p>{error}</p>
 
         <div className={styles.button}>
+<<<<<<< HEAD
           <Button>Register</Button>
+=======
+          <Button>Submit</Button>
+>>>>>>> 707e4cf04287042bb4521bff7be322795b7f62c4
         </div>
       </form>
     </main>

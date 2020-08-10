@@ -1,4 +1,5 @@
 // React and Style
+<<<<<<< HEAD
 import React, { useState, useContext } from 'react';
 import styles from './index.module.css';
 
@@ -17,16 +18,35 @@ import { userService } from 'services';
 
 // Context
 import { UserContext } from 'App';
+=======
+import React, { useState } from 'react';
+import styles from './index.module.css';
+
+// Validations
+import { useForm } from 'react-hook-form';
+
+// Routes
+import { routes } from 'constants/routes';
+
+// Services
+import { user } from 'services';
+>>>>>>> 707e4cf04287042bb4521bff7be322795b7f62c4
 
 // Components
 import Button from 'shared/components/Button';
 import Input from 'shared/components/Input';
+<<<<<<< HEAD
 import { Link } from 'react-router-dom';
+=======
+>>>>>>> 707e4cf04287042bb4521bff7be322795b7f62c4
 
 const Login = () => {
   const { handleSubmit, register, errors } = useForm();
   const [error, setError] = useState(null);
+<<<<<<< HEAD
   const { user } = useContext(UserContext);
+=======
+>>>>>>> 707e4cf04287042bb4521bff7be322795b7f62c4
 
   const inputs = [
     {
@@ -47,6 +67,14 @@ const Login = () => {
       labelText: 'Password',
       validations: {
         required: 'Required',
+<<<<<<< HEAD
+=======
+        pattern: {
+          value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/i,
+          message:
+            "Minimum eight characters, at least one letter and one number! Doesn't allowed space between!!",
+        },
+>>>>>>> 707e4cf04287042bb4521bff7be322795b7f62c4
       },
     },
   ];
@@ -55,12 +83,17 @@ const Login = () => {
     const { email, password } = data;
 
     try {
+<<<<<<< HEAD
       await userService.login(email, password);
 
       if (!firebase.auth().currentUser.emailVerified) {
         setError('You should verify your email first.');
         return;
       }
+=======
+      await user.login(email, password);
+      window.location = routes.home;
+>>>>>>> 707e4cf04287042bb4521bff7be322795b7f62c4
     } catch (error) {
       setError(error.message);
 
@@ -69,6 +102,7 @@ const Login = () => {
       }, 3000);
     }
   };
+<<<<<<< HEAD
 
   const handleResendVerification = async () => {
     await firebase.auth().currentUser.sendEmailVerification();
@@ -77,6 +111,8 @@ const Login = () => {
   if (user) {
     return <Redirect to={routes.home} />;
   }
+=======
+>>>>>>> 707e4cf04287042bb4521bff7be322795b7f62c4
 
   return (
     <main className={styles.login}>
@@ -86,13 +122,18 @@ const Login = () => {
         {inputs.map((input, i) => (
           <div key={i}>
             <Input {...input} validations={register(input.validations)} />
+<<<<<<< HEAD
             <p className={styles.error}>
               {errors[input.name] && errors[input.name].message}
             </p>
+=======
+            {errors[input.name] && errors[input.name].message}
+>>>>>>> 707e4cf04287042bb4521bff7be322795b7f62c4
           </div>
         ))}
 
         {error}
+<<<<<<< HEAD
         {error && error.includes('You should verify your email first.') && (
           <button onClick={handleResendVerification}>
             Resend email verification.
@@ -107,6 +148,11 @@ const Login = () => {
 
         <div className={styles.option}>
           <Link to={routes.register}>Don't have registration?</Link>
+=======
+
+        <div className={styles.button}>
+          <Button>Submit</Button>
+>>>>>>> 707e4cf04287042bb4521bff7be322795b7f62c4
         </div>
       </form>
     </main>

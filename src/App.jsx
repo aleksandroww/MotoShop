@@ -9,6 +9,12 @@ import 'firebase/config';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { routes } from 'constants/routes';
 
+// Routes
+import { routes } from 'constants/routes';
+
+// Firebase
+import 'firebase/config';
+
 // Screens
 import Home from 'screens/Home';
 import Login from 'screens/Login';
@@ -16,8 +22,8 @@ import NotFound from 'screens/NotFound';
 import Loading from 'screens/Loading';
 import Register from 'screens/Register';
 import Create from 'screens/Create';
-import allPosts from 'screens/AllPosts';
-import myPosts from 'screens/MyPosts';
+import AllPosts from 'screens/AllPosts';
+import MyPosts from 'screens/MyPosts';
 
 // Components
 import Header from 'shared/components/Header';
@@ -25,6 +31,9 @@ import Message from 'shared/components/Message';
 
 // Context
 export const UserContext = createContext();
+
+// Context
+const UserContext = createContext();
 
 function App() {
   const [user, setUser] = useState(null);
@@ -55,8 +64,8 @@ function App() {
             <Route path={routes.login} component={Login} />
             <Route path={routes.register} component={Register} />
             <Route path={routes.create} component={Create} />
-            <Route path={routes.allPosts} component={allPosts} />
-            <Route path={routes.myPosts} component={myPosts} />
+            <Route path={routes.allPosts} component={AllPosts} />
+            <Route path={routes.myPosts} component={MyPosts} />
             <Route path="*" component={NotFound} />
           </Switch>
         )}
