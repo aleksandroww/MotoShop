@@ -3,6 +3,7 @@ export const routes = {
   login: '/login',
   register: '/register',
   create: '/create',
-  allPosts: '/allPosts',
-  myPosts: '/myPosts',
+  search: '/search',
+  post: '/post',
+  posts: '/posts',
 };

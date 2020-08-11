@@ -2,3 +2,9 @@
 @import './shared/styles/typography.css';
 @import './shared/styles/variables.css';
 @import './shared/styles/animations.css';
+
+.progress-bar {
+  height: 5px;
+  background: red;
+  margin-top: 20px;
+}

@@ -1,5 +1,5 @@
 // React and Style
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from './index.module.css';
 
 // Validations
@@ -9,25 +9,66 @@ import { useForm } from 'react-hook-form';
 import { Redirect } from 'react-router-dom';
 import { routes } from 'constants/routes';
 
+// Services
+// import { postService } from 'services';
+
 // Context
 import { UserContext } from 'App';
 
 // Components
 import Button from 'shared/components/Button';
+import ProgressBar from 'shared/components/ProgressBar';
+
+// import useStorage from 'hooks/useStorage';
 
 function Create() {
   const { handleSubmit, register, errors } = useForm();
   const { user } = useContext(UserContext);
+  const [file, setFile] = useState(null);
+  const [error, setError] = useState(null);
+  const [data, setData] = useState(null);
+  const [selected, setSelected] = useState(null);
+  const [condition, setCondition] = useState('');
+  const [brand, setBrand] = useState('');
+  const [type, setType] = useState('');
+  const [engine, setEngine] = useState('');
 
-  const handler = (e) => console.log(e);
+  const types = ['image/png', 'image/jpeg', 'image/jpg'];
+
+  const changeHandler = (e) => {
+    setSelected(e.target.files[0]);
+  };
+  //////////////////////////////////
+
+  const createHandler = (e) => {
+    setData(e);
+
+    try {
+      if (selected && types.includes(selected.type)) {
+        setFile(selected);
+        setError('');
+      } else {
+        setFile(null);
+        setError('Please select an image file (png or jpg or jpeg)');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const selects = [
     {
       name: 'type',
       text: 'Type',
       style: 'type',
+      handler: (e) => {
+        setType(e.target.value);
+      },
+      validations: {
+        required: 'Should select!',
+      },
       options: [
-        { value: 'select', text: 'Select' },
+        { value: '', text: 'Select' },
         { value: 'cross', text: 'Cross' },
         { value: 'sport', text: 'Sport' },
         { value: 'naked', text: 'Naked' },
@@ -37,8 +78,14 @@ function Create() {
       name: 'brand',
       text: 'Brand',
       style: 'brand',
+      handler: (e) => {
+        setBrand(e.target.value);
+      },
+      validations: {
+        required: 'Should select!',
+      },
       options: [
-        { value: 'select', text: 'Select' },
+        { value: '', text: 'Select' },
         { value: 'kawasaki', text: 'Kawasaki' },
         { value: 'honda', text: 'Honda' },
         { value: 'aprilia', text: 'Aprilia' },
@@ -50,8 +97,14 @@ function Create() {
       name: 'engine',
       text: 'Engine Type',
       style: 'engine',
+      handler: (e) => {
+        setEngine(e.target.value);
+      },
+      validations: {
+        required: 'Should select!',
+      },
       options: [
-        { value: 'select', text: 'Select' },
+        { value: '', text: 'Select' },
         { value: '2', text: '2 Stroke' },
         { value: '4', text: '4 Stroke' },
       ],
@@ -175,16 +228,43 @@ function Create() {
     },
   ];
 
+  const conditions = [
+    {
+      name: 'condition',
+      text: 'Condition',
+      style: 'condition',
+      handler: (e) => {
+        setCondition(e.target.value);
+      },
+      validations: {
+        required: 'Should select!',
+      },
+      options: [
+        { value: '', text: 'Select' },
+        { value: 'new', text: 'New' },
+        { value: 'used', text: 'Used' },
+      ],
+    },
+  ];
+
   const renderSelect = (select, i) => (
     <div key={i} className={styles[select.style]}>
       <label htmlFor={select.name}>{select.text}</label>
-      <select name={select.name} id={select.name}>
+      <select
+        name={select.name}
+        id={select.name}
+        onChange={select.handler}
+        ref={register(select.validations)}
+      >
         {select.options.map((option, y) => (
           <option name={select.name} value={option.value} key={y}>
             {option.text}
           </option>
         ))}
       </select>
+      <p className={styles.error}>
+        {errors[select.name] && errors[select.name].message}
+      </p>
     </div>
   );
 
@@ -192,7 +272,7 @@ function Create() {
     <div className={styles[input.style]} key={i}>
       <label htmlFor={input.name}>{input.text}</label>
       <input
-        type={input.text}
+        type={input.type}
         placeholder={input.placeholder ? input.placeholder : ''}
         name={input.name}
         ref={register(input.validations)}
@@ -203,44 +283,72 @@ function Create() {
     </div>
   );
 
+  const renderConditions = (con, i) => (
+    <div key={i}>
+      <label htmlFor={con.name}>{con.text}</label>
+      <select
+        name={con.name}
+        id={con.name}
+        onChange={con.handler}
+        ref={register(con.validations)}
+      >
+        {con.options.map((option, y) => (
+          <option name={con.name} value={option.value} key={y}>
+            {option.text}
+          </option>
+        ))}
+      </select>
+      <p className={styles.error}>
+        {errors[con.name] && errors[con.name].message}
+      </p>
+    </div>
+  );
+
   if (!user) {
     return <Redirect to={routes.login} />;
   }
 
   return (
     <section className={styles.create}>
-      <form onSubmit={handleSubmit(handler)}>
+      <form onSubmit={handleSubmit(createHandler)}>
         <h1>Sell My Bike</h1>
 
-        <div className={styles['create-inputs']}>
-          {selects.map(renderSelect)}
+        <div key="condition" className={styles['create-inputs']}>
           {inputs.map(renderInput)}
-
+          {selects.map(renderSelect)}
+          {/*  */}
           <div className={styles.condition}>
-            <label htmlFor='condition'>Condition</label>
-            <select name='condition' id='condition'>
-              <option value='select' key='select'>
-                select
-              </option>
-              <option value='new' key='new'>
-                New
-              </option>
-              <option value='used' key='used'>
-                Used
-              </option>
-            </select>
-
+            {conditions.map(renderConditions)}
             <div>
-              <label htmlFor=''>Upload image</label>
-              <input type='file' name='image' />
+              <label htmlFor="image">Upload image</label>
+              <input type="file" name="image" onChange={changeHandler} />
+              <div className="output">
+                {error && <div className="error">{error}</div>}
+                {file && <div>{file.name}</div>}
+                {file && (
+                  <ProgressBar
+                    file={file}
+                    setFile={setFile}
+                    data={data}
+                    condition={condition}
+                    brand={brand}
+                    type={type}
+                    engine={engine}
+                  />
+                )}
+              </div>
             </div>
           </div>
 
-          <div className={styles.description}>
-            <label htmlFor='more'>More information about your bike</label>
+          <div className={styles.description} key="s">
+            <label htmlFor="additionalInfo">
+              More information about your bike
+            </label>
             <textarea
-              placeholder='About any extras on your bike'
-              name='additionalInfo'></textarea>
+              type="text"
+              placeholder="About any extras on your bike"
+              name="additionalInfo"
+            ></textarea>
           </div>
 
           <div className={styles.button}>

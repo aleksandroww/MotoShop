@@ -9,7 +9,7 @@ function Home() {
   return (
     <main className={styles['home-screen']}>
       <div className={styles['upper-section']}>
-        <div>
+        <div className={styles.search}>
           <Search />
         </div>
       </div>

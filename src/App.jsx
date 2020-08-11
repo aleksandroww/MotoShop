@@ -16,8 +16,7 @@ import NotFound from 'screens/NotFound';
 import Loading from 'screens/Loading';
 import Register from 'screens/Register';
 import Create from 'screens/Create';
-import allPosts from 'screens/AllPosts';
-import myPosts from 'screens/MyPosts';
+import Posts from 'screens/Posts';
 
 // Components
 import Header from 'shared/components/Header';
@@ -55,9 +54,8 @@ function App() {
             <Route path={routes.login} component={Login} />
             <Route path={routes.register} component={Register} />
             <Route path={routes.create} component={Create} />
-            <Route path={routes.allPosts} component={allPosts} />
-            <Route path={routes.myPosts} component={myPosts} />
-            <Route path="*" component={NotFound} />
+            <Route path={routes.posts} component={Posts} />
+            <Route path='*' component={NotFound} />
           </Switch>
         )}
       </Router>

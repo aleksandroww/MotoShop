@@ -46,6 +46,17 @@ function Header() {
     setLoading(false);
   }, []);
 
+  const publicLinks = [
+    { text: 'Login', route: routes.login },
+    { text: 'Register', route: routes.register },
+    { text: 'Sell Bike', route: routes.create },
+  ];
+
+  const privateLinks = [
+    { text: 'Sell Bike', route: routes.create },
+    { text: 'Posts', route: routes.posts },
+  ];
+
   return (
     <UserContext.Provider value={{ user }}>
       <header className={styles.header}>
@@ -56,18 +67,17 @@ function Header() {
           ) : (
             <nav className={styles.nav}>
               <ul className={styles['nav-items']}>
-                <li>{!user && <Link to={routes.login}>Login</Link>}</li>
-                <li>{!user && <Link to={routes.register}>Register</Link>}</li>
-                <li>
-                  <Link to={routes.create}>Sell My Bike</Link>
-                </li>
-                <li>
-                  <Link to={routes.allPosts}>Posts</Link>
-                </li>
-                <li>{user && <Link to={routes.myPosts}>My Posts</Link>}</li>
-                <li>
-                  {user && <button onClick={handlerLogout}>Logout</button>}
-                </li>
+                {(user ? privateLinks : publicLinks).map((link, i) => (
+                  <li key={i}>
+                    <Link to={link.route}>{link.text}</Link>
+                  </li>
+                ))}
+
+                {user && (
+                  <li>
+                    <button onClick={handlerLogout}>Logout</button>
+                  </li>
+                )}
               </ul>
             </nav>
           )}

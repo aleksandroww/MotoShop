@@ -46,24 +46,7 @@
 }
 
 .nav-items button {
-  background-color: Transparent;
-  background-repeat: no-repeat;
-  color: var(--white);
-  border: none;
-  cursor: pointer;
-  outline: none;
   font-size: 1rem;
-  position: relative;
-}
-
-.nav-items button:hover::before {
-  content: '';
-  position: absolute;
-  bottom: -0.6rem;
-  background: var(--white);
-  height: 0.2rem;
-  animation: slide 1 0.3s;
-  width: 100%;
 }
 
 @keyframes slide {

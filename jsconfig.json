@@ -6,7 +6,6 @@
       "shared/*": ["shared/*"],
       "firebase/*": ["firebase/*"],
       "services/*": ["services/*"],
-      "hooks/*": ["hooks/*"],
       "constants/*": ["constants/*"]
     }
   }
