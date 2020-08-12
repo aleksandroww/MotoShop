@@ -13,7 +13,7 @@ import { Redirect } from 'react-router-dom';
 import { routes } from 'constants/routes';
 
 // Services
-import { userService } from 'services';
+import { userService } from 'shared/services';
 
 // Context
 import { UserContext } from 'App';
@@ -21,21 +21,31 @@ import { UserContext } from 'App';
 // Components
 import Button from 'shared/components/Button';
 import Input from 'shared/components/Input';
+import Loading from 'shared/components/Loading';
 
 const Register = () => {
   const { handleSubmit, register, errors } = useForm();
-  const [password, setPassword] = useState(null);
-  const [error, setError] = useState(null);
   const { user } = useContext(UserContext);
 
+  const [loading, setLoading] = useState(false);
+  const [password, setPassword] = useState(null);
+  const [error, setError] = useState(null);
+
   const registerHandler = async (data) => {
+    setLoading(true);
+
     const { email, password } = data;
 
     try {
       await userService.register(email, password);
       await firebase.auth().currentUser.sendEmailVerification();
+
+      setLoading(false);
+
       window.location = routes.login;
     } catch (error) {
+      setLoading(false);
+
       setError(error.message);
 
       setTimeout(() => {
@@ -100,10 +110,16 @@ const Register = () => {
           </div>
         ))}
 
-        <p>{error}</p>
+        <p className={styles.error}>{error}</p>
 
         <div className={styles.button}>
-          <Button>Register</Button>
+          <Button>
+            {loading ? (
+              <Loading height={25} width={25} color='#fff' />
+            ) : (
+              'Login'
+            )}
+          </Button>
         </div>
       </form>
     </main>

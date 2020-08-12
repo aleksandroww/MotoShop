@@ -47,6 +47,10 @@
 
 .nav-items button {
   font-size: 1rem;
+  background: transparent;
+  color: var(--white);
+  border: none;
+  cursor: pointer;
 }
 
 @keyframes slide {

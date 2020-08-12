@@ -13,7 +13,6 @@ import { routes } from 'constants/routes';
 import Home from 'screens/Home';
 import Login from 'screens/Login';
 import NotFound from 'screens/NotFound';
-import Loading from 'screens/Loading';
 import Register from 'screens/Register';
 import Create from 'screens/Create';
 import Posts from 'screens/Posts';
@@ -21,6 +20,7 @@ import Posts from 'screens/Posts';
 // Components
 import Header from 'shared/components/Header';
 import Message from 'shared/components/Message';
+import Loading from 'shared/components/Loading';
 
 // Context
 export const UserContext = createContext();

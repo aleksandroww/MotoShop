@@ -2,6 +2,10 @@
 import React, { useContext, useState } from 'react';
 import styles from './index.module.css';
 
+// Firebase
+import firebase from 'firebase';
+import { projectStorage } from 'firebase/config';
+
 // Validations
 import { useForm } from 'react-hook-form';
 
@@ -10,49 +14,73 @@ import { Redirect } from 'react-router-dom';
 import { routes } from 'constants/routes';
 
 // Services
-// import { postService } from 'services';
+import { postService, fileService } from 'shared/services';
 
 // Context
 import { UserContext } from 'App';
 
 // Components
 import Button from 'shared/components/Button';
-import ProgressBar from 'shared/components/ProgressBar';
-
-// import useStorage from 'hooks/useStorage';
+import Loading from 'shared/components/Loading';
 
 function Create() {
   const { handleSubmit, register, errors } = useForm();
   const { user } = useContext(UserContext);
+
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
-  const [data, setData] = useState(null);
-  const [selected, setSelected] = useState(null);
-  const [condition, setCondition] = useState('');
-  const [brand, setBrand] = useState('');
-  const [type, setType] = useState('');
-  const [engine, setEngine] = useState('');
+  const [description, setDescription] = useState(null);
+  const [loading, setLoading] = useState(false);
 
+  // Allowed img types
   const types = ['image/png', 'image/jpeg', 'image/jpg'];
 
-  const changeHandler = (e) => {
-    setSelected(e.target.files[0]);
+  // Handle image change
+  const handleFileChange = (e) => {
+    const image = e.target.files[0];
+
+    if (image && types.includes(image.type)) {
+      setFile(image);
+      setError(null);
+    } else if (image) {
+      setFile(null);
+      setError('Please choose valid file format!');
+    } else {
+      setFile(null);
+      setError('Please choose file!');
+    }
   };
-  //////////////////////////////////
 
-  const createHandler = (e) => {
-    setData(e);
+  // Handle form submit
+  const handleCreate = (data) => {
+    setLoading(true);
 
-    try {
-      if (selected && types.includes(selected.type)) {
-        setFile(selected);
-        setError('');
-      } else {
-        setFile(null);
-        setError('Please select an image file (png or jpg or jpeg)');
-      }
-    } catch (error) {
-      console.log(error);
+    if (file) {
+      const storageRef = projectStorage.ref(file.name);
+
+      fileService.uploadFile(file).on(
+        'state_changed',
+        null,
+        (err) => {
+          setError(err);
+        },
+        async () => {
+          const url = await storageRef.getDownloadURL();
+
+          await postService.createPost({
+            ...data,
+            url,
+            description,
+            creator: firebase.auth().currentUser.uid,
+          });
+
+          setLoading(false);
+          window.location = '/';
+        }
+      );
+    } else {
+      setLoading(false);
+      setError('Please choose file!');
     }
   };
 
@@ -61,9 +89,6 @@ function Create() {
       name: 'type',
       text: 'Type',
       style: 'type',
-      handler: (e) => {
-        setType(e.target.value);
-      },
       validations: {
         required: 'Should select!',
       },
@@ -78,9 +103,6 @@ function Create() {
       name: 'brand',
       text: 'Brand',
       style: 'brand',
-      handler: (e) => {
-        setBrand(e.target.value);
-      },
       validations: {
         required: 'Should select!',
       },
@@ -91,15 +113,13 @@ function Create() {
         { value: 'aprilia', text: 'Aprilia' },
         { value: 'bmw', text: 'BMW' },
         { value: 'suzuki', text: 'Suzuki' },
+        { value: 'ktm', text: 'KTM' },
       ],
     },
     {
       name: 'engine',
       text: 'Engine Type',
       style: 'engine',
-      handler: (e) => {
-        setEngine(e.target.value);
-      },
       validations: {
         required: 'Should select!',
       },
@@ -233,9 +253,6 @@ function Create() {
       name: 'condition',
       text: 'Condition',
       style: 'condition',
-      handler: (e) => {
-        setCondition(e.target.value);
-      },
       validations: {
         required: 'Should select!',
       },
@@ -247,13 +264,14 @@ function Create() {
     },
   ];
 
+  // Render Selects
   const renderSelect = (select, i) => (
     <div key={i} className={styles[select.style]}>
       <label htmlFor={select.name}>{select.text}</label>
+
       <select
         name={select.name}
         id={select.name}
-        onChange={select.handler}
         ref={register(select.validations)}
       >
         {select.options.map((option, y) => (
@@ -262,12 +280,14 @@ function Create() {
           </option>
         ))}
       </select>
+
       <p className={styles.error}>
         {errors[select.name] && errors[select.name].message}
       </p>
     </div>
   );
 
+  // Render Inputs
   const renderInput = (input, i) => (
     <div className={styles[input.style]} key={i}>
       <label htmlFor={input.name}>{input.text}</label>
@@ -283,9 +303,11 @@ function Create() {
     </div>
   );
 
+  // Render Conditions
   const renderConditions = (con, i) => (
     <div key={i}>
       <label htmlFor={con.name}>{con.text}</label>
+
       <select
         name={con.name}
         id={con.name}
@@ -298,61 +320,63 @@ function Create() {
           </option>
         ))}
       </select>
+
       <p className={styles.error}>
         {errors[con.name] && errors[con.name].message}
       </p>
     </div>
   );
 
+  // If user is not logged redirect to login
   if (!user) {
     return <Redirect to={routes.login} />;
   }
 
   return (
     <section className={styles.create}>
-      <form onSubmit={handleSubmit(createHandler)}>
+      <form onSubmit={handleSubmit(handleCreate)}>
         <h1>Sell My Bike</h1>
 
-        <div key="condition" className={styles['create-inputs']}>
-          {inputs.map(renderInput)}
+        <div className={styles['create-inputs']}>
           {selects.map(renderSelect)}
-          {/*  */}
+
+          {inputs.map(renderInput)}
+
+          {selects.map(renderSelect)}
+
           <div className={styles.condition}>
             {conditions.map(renderConditions)}
+
             <div>
               <label htmlFor="image">Upload image</label>
-              <input type="file" name="image" onChange={changeHandler} />
-              <div className="output">
-                {error && <div className="error">{error}</div>}
-                {file && <div>{file.name}</div>}
-                {file && (
-                  <ProgressBar
-                    file={file}
-                    setFile={setFile}
-                    data={data}
-                    condition={condition}
-                    brand={brand}
-                    type={type}
-                    engine={engine}
-                  />
-                )}
-              </div>
+              <input type="file" onChange={handleFileChange} />
             </div>
           </div>
 
-          <div className={styles.description} key="s">
+          <div className={styles.description}>
             <label htmlFor="additionalInfo">
               More information about your bike
             </label>
             <textarea
               type="text"
-              placeholder="About any extras on your bike"
               name="additionalInfo"
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="Tell more about your bike"
             ></textarea>
           </div>
 
           <div className={styles.button}>
-            <Button>Submit</Button>
+            <Button>
+              {loading ? (
+                <Loading height={45} width={45} color="#fff" />
+              ) : (
+                'Submit'
+              )}
+            </Button>
+          </div>
+
+          <div className={styles['img-error']}>
+            <p>{error}</p>
           </div>
         </div>
       </form>

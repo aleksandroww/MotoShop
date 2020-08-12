@@ -19,6 +19,34 @@
   text-align: center;
 }
 
+.create div div {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-xxs);
+}
+
+.create label {
+  color: var(--white);
+}
+
+.create select,
+.create input {
+  font-size: 1rem;
+  padding: 0.3rem;
+  border-radius: 0.2rem;
+  border: none;
+  margin: var(--spacing-xxs) 0;
+  padding-left: var(--spacing-xxs);
+  width: 8.7rem;
+  background: var(--white);
+  outline: none;
+}
+
+.error {
+  color: var(--secondary-color);
+}
+
+/* Grid Areas */
 .type {
   grid-area: type;
 }
@@ -80,14 +108,24 @@
   justify-self: end;
 }
 
+.img-error {
+  grid-area: error;
+}
+
+.img-error p {
+  color: var(--secondary-color);
+  font-size: 18px;
+}
+
 .description textarea {
-  height: 7rem;
+  height: 8.1rem;
   resize: none;
   padding: var(--spacing-xxs);
   margin-top: var(--spacing-xxs);
   border-radius: 0.2rem;
 }
 
+/* Grid */
 .create-inputs {
   display: grid;
   grid-template-areas:
@@ -96,32 +134,5 @@
     'year kilometers price'
     'name contact city'
     'description description condition'
-    '. . button';
-}
-
-.create div div {
-  display: flex;
-  flex-direction: column;
-  padding: var(--spacing-xxs);
-}
-
-.create label {
-  color: var(--white);
-}
-
-.create select,
-.create input {
-  font-size: 1rem;
-  padding: 0.3rem;
-  border-radius: 0.2rem;
-  border: none;
-  margin: var(--spacing-xxs) 0;
-  padding-left: var(--spacing-xxs);
-  width: 8.7rem;
-  background: var(--white);
-  outline: none;
-}
-
-.error {
-  color: var(--secondary-color);
+    'error error button';
 }

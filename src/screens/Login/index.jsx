@@ -9,11 +9,11 @@ import firebase from 'firebase';
 import { useForm } from 'react-hook-form';
 
 // Router and Routes
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { routes } from 'constants/routes';
 
 // Services
-import { userService } from 'services';
+import { userService } from 'shared/services';
 
 // Context
 import { UserContext } from 'App';
@@ -21,12 +21,41 @@ import { UserContext } from 'App';
 // Components
 import Button from 'shared/components/Button';
 import Input from 'shared/components/Input';
-import { Link } from 'react-router-dom';
+import Loading from 'shared/components/Loading';
 
 const Login = () => {
   const { handleSubmit, register, errors } = useForm();
-  const [error, setError] = useState(null);
   const { user } = useContext(UserContext);
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const loginHandler = async (data) => {
+    setLoading(true);
+
+    const { email, password } = data;
+
+    try {
+      await userService.login(email, password);
+
+      if (!firebase.auth().currentUser.emailVerified) {
+        setError('You should verify your email first.');
+        setLoading(false);
+        return;
+      }
+    } catch (error) {
+      setLoading(false);
+      setError(error.message);
+
+      setTimeout(() => {
+        setError(null);
+      }, 3000);
+    }
+  };
+
+  const handleResendVerification = async () => {
+    await firebase.auth().currentUser.sendEmailVerification();
+  };
 
   const inputs = [
     {
@@ -51,29 +80,6 @@ const Login = () => {
     },
   ];
 
-  const loginHandler = async (data) => {
-    const { email, password } = data;
-
-    try {
-      await userService.login(email, password);
-
-      if (!firebase.auth().currentUser.emailVerified) {
-        setError('You should verify your email first.');
-        return;
-      }
-    } catch (error) {
-      setError(error.message);
-
-      setTimeout(() => {
-        setError(null);
-      }, 3000);
-    }
-  };
-
-  const handleResendVerification = async () => {
-    await firebase.auth().currentUser.sendEmailVerification();
-  };
-
   if (user) {
     return <Redirect to={routes.home} />;
   }
@@ -92,7 +98,8 @@ const Login = () => {
           </div>
         ))}
 
-        {error}
+        <p className={styles.error}>{error}</p>
+
         {error && error.includes('You should verify your email first.') && (
           <button onClick={handleResendVerification}>
             Resend email verification.
@@ -100,7 +107,13 @@ const Login = () => {
         )}
 
         <div className={styles.button}>
-          <Button>Login</Button>
+          <Button>
+            {loading ? (
+              <Loading height={25} width={25} color='#fff' />
+            ) : (
+              'Login'
+            )}
+          </Button>
         </div>
 
         <hr />

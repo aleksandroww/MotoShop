@@ -10,7 +10,7 @@ import 'firebase/config';
 import { UserContext } from 'App';
 
 //import Loading
-import Loading from 'screens/Loading';
+import Loading from 'shared/components/Loading';
 
 // Router
 import { Link } from 'react-router-dom';
@@ -19,7 +19,7 @@ import { Link } from 'react-router-dom';
 import { routes } from 'constants/routes';
 
 // Services
-import { userService } from 'services';
+import { userService } from 'shared/services';
 
 function Header() {
   const handlerLogout = async () => {
