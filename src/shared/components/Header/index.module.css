@@ -24,6 +24,7 @@
   list-style: none;
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 
 .nav-items li {
@@ -51,6 +52,13 @@
   color: var(--white);
   border: none;
   cursor: pointer;
+  padding: 0.8rem 1.5rem;
+}
+
+.nav-items button:hover {
+  background: var(--secondary-color);
+  color: var(--white);
+  transition: 0.3s;
 }
 
 @keyframes slide {

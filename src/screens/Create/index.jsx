@@ -3,7 +3,6 @@ import React, { useContext, useState } from 'react';
 import styles from './index.module.css';
 
 // Firebase
-import firebase from 'firebase';
 import { projectStorage } from 'firebase/config';
 
 // Validations
@@ -71,7 +70,7 @@ function Create() {
             ...data,
             url,
             description,
-            creator: firebase.auth().currentUser.uid,
+            creator: user.uid,
           });
 
           setLoading(false);
@@ -113,7 +112,6 @@ function Create() {
         { value: 'aprilia', text: 'Aprilia' },
         { value: 'bmw', text: 'BMW' },
         { value: 'suzuki', text: 'Suzuki' },
-        { value: 'ktm', text: 'KTM' },
       ],
     },
     {
@@ -258,8 +256,8 @@ function Create() {
       },
       options: [
         { value: '', text: 'Select' },
-        { value: 'new', text: 'New' },
-        { value: 'used', text: 'Used' },
+        { value: 'isNew', text: 'New' },
+        { value: 'isUsed', text: 'Used' },
       ],
     },
   ];
@@ -272,8 +270,7 @@ function Create() {
       <select
         name={select.name}
         id={select.name}
-        ref={register(select.validations)}
-      >
+        ref={register(select.validations)}>
         {select.options.map((option, y) => (
           <option name={select.name} value={option.value} key={y}>
             {option.text}
@@ -312,8 +309,7 @@ function Create() {
         name={con.name}
         id={con.name}
         onChange={con.handler}
-        ref={register(con.validations)}
-      >
+        ref={register(con.validations)}>
         {con.options.map((option, y) => (
           <option name={con.name} value={option.value} key={y}>
             {option.text}
@@ -348,27 +344,26 @@ function Create() {
             {conditions.map(renderConditions)}
 
             <div>
-              <label htmlFor="image">Upload image</label>
-              <input type="file" onChange={handleFileChange} />
+              <label htmlFor='image'>Upload image</label>
+              <input type='file' onChange={handleFileChange} />
             </div>
           </div>
 
           <div className={styles.description}>
-            <label htmlFor="additionalInfo">
+            <label htmlFor='additionalInfo'>
               More information about your bike
             </label>
             <textarea
-              type="text"
-              name="additionalInfo"
+              type='text'
+              name='additionalInfo'
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="Tell more about your bike"
-            ></textarea>
+              placeholder='Tell more about your bike'></textarea>
           </div>
 
           <div className={styles.button}>
             <Button>
               {loading ? (
-                <Loading height={45} width={45} color="#fff" />
+                <Loading height={45} width={45} color='#fff' />
               ) : (
                 'Submit'
               )}

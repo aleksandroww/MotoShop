@@ -16,10 +16,10 @@ import NotFound from 'screens/NotFound';
 import Register from 'screens/Register';
 import Create from 'screens/Create';
 import Posts from 'screens/Posts';
+import Search from 'screens/Search';
 
 // Components
 import Header from 'shared/components/Header';
-import Message from 'shared/components/Message';
 import Loading from 'shared/components/Loading';
 
 // Context
@@ -28,7 +28,6 @@ export const UserContext = createContext();
 function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [message, setMessage] = useState(null);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
@@ -42,10 +41,9 @@ function App() {
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, setMessage }}>
+    <UserContext.Provider value={{ user }}>
       <Router>
         <Header />
-        {message && <Message message={message} />}
         {loading ? (
           <Loading />
         ) : (
@@ -55,6 +53,7 @@ function App() {
             <Route path={routes.register} component={Register} />
             <Route path={routes.create} component={Create} />
             <Route path={routes.posts} component={Posts} />
+            <Route path={routes.search} component={Search} />
             <Route path='*' component={NotFound} />
           </Switch>
         )}
