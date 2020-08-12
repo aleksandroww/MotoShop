@@ -1,5 +1,6 @@
 import { projectFirestore } from 'firebase/config';
 
+
 export function createPost(data) {
   return projectFirestore.collection('posts').add(data);
 }
@@ -124,4 +125,21 @@ export async function getPostsByQuery(query) {
   });
 
   return allPosts;
+}
+
+export async function getPersonalPosts(query) {
+  
+  // Get posts from firebase
+  let posts = await projectFirestore.collection('posts').get();
+
+  // All Posts
+  let personalPosts = [];
+
+
+  posts.forEach((post) => {
+    personalPosts.push(post.data());
+  });
+
+
+  return personalPosts;
 }

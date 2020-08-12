@@ -54,7 +54,7 @@ function Header() {
 
   const privateLinks = [
     { text: 'Sell Bike', route: routes.create },
-    { text: 'Posts', route: routes.posts },
+    { text: 'My Posts', route: routes.posts },
   ];
 
   return (

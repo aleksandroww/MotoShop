@@ -12,9 +12,9 @@ function SearchForm() {
       text: 'Type',
       options: [
         { value: 'all', text: 'All' },
-        { value: 'cross', text: 'Cross' },
-        { value: 'sport', text: 'Sport' },
-        { value: 'naked', text: 'Naked' },
+        { value: 'Cross', text: 'Cross' },
+        { value: 'Sport', text: 'Sport' },
+        { value: 'Naked', text: 'Naked' },
       ],
     },
     {
@@ -22,11 +22,12 @@ function SearchForm() {
       text: 'Brand',
       options: [
         { value: 'all', text: 'All' },
-        { value: 'kawasaki', text: 'Kawasaki' },
-        { value: 'honda', text: 'Honda' },
-        { value: 'aprilia', text: 'Aprilia' },
-        { value: 'bmw', text: 'BMW' },
-        { value: 'suzuki', text: 'Suzuki' },
+        { value: 'Kawasaki', text: 'Kawasaki' },
+        { value: 'Honda', text: 'Honda' },
+        { value: 'Aprilia', text: 'Aprilia' },
+        { value: 'BMW', text: 'BMW' },
+        { value: 'Suzuki', text: 'Suzuki' },
+        { value: 'KTM', text: 'KTM' },
       ],
     },
   ];
@@ -70,7 +71,7 @@ function SearchForm() {
     <section className={styles.search}>
       <h1>Search</h1>
 
-      <form action='/search'>
+      <form action="/search">
         <div className={styles.row}>
           {selectSections.map((select, i) => (
             <section key={i}>
@@ -105,10 +106,10 @@ function SearchForm() {
         <section>
           <label>Condition</label>
           <div className={`${styles.row} ${styles.condition}`}>
-            <input type='checkbox' id='isUsed' name='isUsed' />
-            <label htmlFor='isUsed'>Used</label>
-            <input type='checkbox' id='isNew' name='isNew' />
-            <label htmlFor='isNew'>New</label>
+            <input type="checkbox" id="isUsed" name="isUsed" />
+            <label htmlFor="isUsed">Used</label>
+            <input type="checkbox" id="isNew" name="isNew" />
+            <label htmlFor="isNew">New</label>
           </div>
         </section>
 

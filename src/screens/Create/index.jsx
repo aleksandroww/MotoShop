@@ -93,9 +93,9 @@ function Create() {
       },
       options: [
         { value: '', text: 'Select' },
-        { value: 'cross', text: 'Cross' },
-        { value: 'sport', text: 'Sport' },
-        { value: 'naked', text: 'Naked' },
+        { value: 'Cross', text: 'Cross' },
+        { value: 'Sport', text: 'Sport' },
+        { value: 'Naked', text: 'Naked' },
       ],
     },
     {
@@ -107,11 +107,12 @@ function Create() {
       },
       options: [
         { value: '', text: 'Select' },
-        { value: 'kawasaki', text: 'Kawasaki' },
-        { value: 'honda', text: 'Honda' },
-        { value: 'aprilia', text: 'Aprilia' },
-        { value: 'bmw', text: 'BMW' },
-        { value: 'suzuki', text: 'Suzuki' },
+        { value: 'Kawasaki', text: 'Kawasaki' },
+        { value: 'Honda', text: 'Honda' },
+        { value: 'Aprilia', text: 'Aprilia' },
+        { value: 'BMW', text: 'BMW' },
+        { value: 'Suzuki', text: 'Suzuki' },
+        { value: 'KTM', text: 'KTM' },
       ],
     },
     {
@@ -270,7 +271,8 @@ function Create() {
       <select
         name={select.name}
         id={select.name}
-        ref={register(select.validations)}>
+        ref={register(select.validations)}
+      >
         {select.options.map((option, y) => (
           <option name={select.name} value={option.value} key={y}>
             {option.text}
@@ -309,7 +311,8 @@ function Create() {
         name={con.name}
         id={con.name}
         onChange={con.handler}
-        ref={register(con.validations)}>
+        ref={register(con.validations)}
+      >
         {con.options.map((option, y) => (
           <option name={con.name} value={option.value} key={y}>
             {option.text}
@@ -344,26 +347,27 @@ function Create() {
             {conditions.map(renderConditions)}
 
             <div>
-              <label htmlFor='image'>Upload image</label>
-              <input type='file' onChange={handleFileChange} />
+              <label htmlFor="image">Upload image</label>
+              <input type="file" onChange={handleFileChange} />
             </div>
           </div>
 
           <div className={styles.description}>
-            <label htmlFor='additionalInfo'>
+            <label htmlFor="additionalInfo">
               More information about your bike
             </label>
             <textarea
-              type='text'
-              name='additionalInfo'
+              type="text"
+              name="additionalInfo"
               onChange={(e) => setDescription(e.target.value)}
-              placeholder='Tell more about your bike'></textarea>
+              placeholder="Tell more about your bike"
+            ></textarea>
           </div>
 
           <div className={styles.button}>
             <Button>
               {loading ? (
-                <Loading height={45} width={45} color='#fff' />
+                <Loading height={45} width={45} color="#fff" />
               ) : (
                 'Submit'
               )}

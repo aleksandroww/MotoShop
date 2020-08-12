@@ -1,49 +1,59 @@
 // React and style
-import React from 'react';
-import styles from './index.module.css';
+import React, { useEffect, useState, useContext } from 'react';
+// import styles from './index.module.css';
 
-function Posts() {
+// Servies
+import { postService } from 'shared/services';
+
+// Context
+import { UserContext } from 'App';
+
+function Posts({ location }) {
+  const [posts, setPosts] = useState([]);
+  const { user } = useContext(UserContext);
+  const [userID, setUserID] = useState('');
+
+  let personalPosts = posts.filter((curr) => curr.creator === userID);
+
+  useEffect(() => {
+    (async () => {
+      const postsData = await postService.getPersonalPosts(location.search);
+      setPosts(postsData);
+      setUserID(user.uid);
+    })();
+  }, [location, user]);
+
   return (
     <main>
-      <div>
-        <div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Non iusto
-          dolores officiis enim laborum, dicta, laudantium temporibus molestiae,
-          voluptatum consequatur expedita ipsa explicabo. Placeat, fugit, autem
-          culpa et provident maiores numquam explicabo sint in cumque
-          accusantium! Totam error assumenda quae beatae esse. Harum
-          consequuntur repellat dolorum expedita illum odio totam, provident
-          delectus fugiat obcaecati nisi unde vero odit necessitatibus quidem
-          quaerat repellendus iste nostrum ullam corrupti fugit, non, doloribus
-          perferendis? Aliquid modi similique, assumenda, ratione iure odit est
-          reiciendis totam doloremque unde quae obcaecati nobis laborum officiis
-          amet libero incidunt ea voluptatem, sint maxime minus quis repellat
-          voluptate. Veniam voluptatum ad blanditiis cum non praesentium ut iste
-          labore rem perspiciatis voluptates mollitia nam eveniet obcaecati
-          totam laboriosam, minus, ipsum at dolorum accusantium. Voluptas iure
-          error voluptatum accusantium accusamus aperiam, voluptatibus porro
-          eius nulla officia nobis nemo, fugit odit dolorem laboriosam sit
-          illum. Architecto fugit accusamus laboriosam animi, repudiandae
-          inventore qui deleniti provident quidem, voluptates mollitia dolores
-          id. Beatae libero placeat totam alias laudantium nam repellendus rem
-          veritatis omnis labore sequi nobis natus culpa rerum, iusto, soluta
-          quo pariatur voluptatibus praesentium odio et! Maiores debitis eos
-          saepe numquam fugiat dicta dolor asperiores repellendus ipsum
-          cupiditate reiciendis quisquam quas iusto, earum neque libero omnis
-          tempore possimus ipsam obcaecati! Tenetur earum quaerat saepe quisquam
-          enim non, sit sed perspiciatis iste blanditiis pariatur aliquid
-          deserunt eum veritatis recusandae, ipsam ea fugiat, ad nam! Quisquam,
-          praesentium cum tempora voluptatem nihil cumque impedit amet a
-          voluptate ipsa, dolorem, corrupti ratione saepe eligendi quidem labore
-          adipisci aperiam doloribus maiores! Minus optio vero aliquid
-          exercitationem cum placeat! Reprehenderit recusandae officia, non eum
-          nobis doloribus voluptate quasi nihil possimus necessitatibus adipisci
-          totam tempore obcaecati magnam ab vero aliquam ipsum, atque libero
-          voluptatum id esse voluptas! Aliquid, ullam reprehenderit, vero qui
-          blanditiis praesentium quod placeat error, recusandae fuga voluptates
-          sint.
+      {personalPosts.map((post, i) => (
+        <div id="features-wrapper" key={i}>
+          <div className="container">
+            <div className="row">
+              <div className="col-4 col-12-medium">
+                <section className="box feature">
+                  <a href={post.url}>
+                    <img src={post.url} alt="" width="500" height="300" />
+                  </a>
+                  <div className="inner">
+                    <header>
+                      <h2 key={i}>
+                        {post.brand} {post.model}
+                      </h2>
+                      <p>{post.price} $</p>
+                    </header>
+                    <p></p>
+                    <p>{post.year}</p>
+                    <p>{post.capacity} cc</p>
+                    <p>{post.power} hp</p>
+                    <p>{post.name}</p>
+                    <p>{post.city}</p>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      ))}
     </main>
   );
 }
