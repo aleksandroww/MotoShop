@@ -1,10 +1,23 @@
 import { projectFirestore } from 'firebase/config';
 
-
 export function createPost(data) {
   return projectFirestore.collection('posts').add(data);
 }
+export async function deletePost(postId) {
+  // Get posts from firebase
+  await projectFirestore
+    .collection('posts')
+    .doc(postId)
+    .delete()
+    .then(function () {
+      window.location.reload(false);
+    })
+    .catch(function (error) {
+      console.error('Error removing document: ', error);
+    });
 
+  return deletePost;
+}
 export async function getPostsByQuery(query) {
   const queryObj = query
     .slice(1)
@@ -128,18 +141,15 @@ export async function getPostsByQuery(query) {
 }
 
 export async function getPersonalPosts(query) {
-  
   // Get posts from firebase
   let posts = await projectFirestore.collection('posts').get();
 
   // All Posts
   let personalPosts = [];
 
-
   posts.forEach((post) => {
     personalPosts.push(post.data());
   });
-
 
   return personalPosts;
 }

@@ -23,6 +23,11 @@ function Posts({ location }) {
     })();
   }, [location, user]);
 
+  const deleteHandler = async (e) => {
+    console.log(e.target);
+    // await postService.deletePost(e);
+  };
+
   return (
     <main>
       {personalPosts.map((post, i) => (
@@ -49,6 +54,7 @@ function Posts({ location }) {
                     <p>{post.city}</p>
                   </div>
                 </section>
+                <button onClick={deleteHandler}>Delete</button>
               </div>
             </div>
           </div>
