@@ -1,0 +1,5 @@
+.search {
+  max-width: var(--layout-max-width);
+  padding: var(--spacing-xxl);
+  margin: 0 auto;
+}

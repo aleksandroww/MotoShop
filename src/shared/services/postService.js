@@ -1,23 +1,11 @@
 import { projectFirestore } from 'firebase/config';
 
+// Create Post
 export function createPost(data) {
   return projectFirestore.collection('posts').add(data);
 }
-export async function deletePost(postId) {
-  // Get posts from firebase
-  await projectFirestore
-    .collection('posts')
-    .doc(postId)
-    .delete()
-    .then(function () {
-      window.location.reload(false);
-    })
-    .catch(function (error) {
-      console.error('Error removing document: ', error);
-    });
 
-  return deletePost;
-}
+// Get Post by Query
 export async function getPostsByQuery(query) {
   const queryObj = query
     .slice(1)
@@ -38,19 +26,17 @@ export async function getPostsByQuery(query) {
     return acc;
   }, []);
 
-  // Get posts from firebase
   let posts = await projectFirestore.collection('posts').get();
 
-  // All Posts
   let allPosts = [];
+
   posts.forEach((post) => {
-    allPosts.push(post.data());
+    const data = post.data();
+    allPosts.push({ ...data, id: post.id });
   });
 
-  // Conditions
   const conditions = [];
 
-  // Filter by queries
   queryArr.forEach(([name, value]) => {
     switch (name) {
       case 'type':
@@ -126,7 +112,6 @@ export async function getPostsByQuery(query) {
     }
   });
 
-  // Filter conditions
   conditions.forEach((condition) => {
     if (conditions.length < 2) {
       if (condition === 'isUsed') {
@@ -140,16 +125,35 @@ export async function getPostsByQuery(query) {
   return allPosts;
 }
 
-export async function getPersonalPosts(query) {
-  // Get posts from firebase
-  let posts = await projectFirestore.collection('posts').get();
+// Get personal posts
+export async function getPersonalPosts(id) {
+  let posts = await projectFirestore
+    .collection('posts')
+    .where('creator', '==', id)
+    .get();
 
-  // All Posts
   let personalPosts = [];
 
   posts.forEach((post) => {
-    personalPosts.push(post.data());
+    const data = post.data();
+    personalPosts.push({ ...data, id: post.id });
   });
 
   return personalPosts;
+}
+
+// Get current post
+export async function getPost(id) {
+  let post = await projectFirestore.collection('posts').doc(id).get();
+  return post.data();
+}
+
+
+// Delete Post
+export async function deletePost(postId) {
+  const deletedPost = await projectFirestore
+    .collection('posts')
+    .doc(postId)
+    .delete();
+  return deletedPost;
 }

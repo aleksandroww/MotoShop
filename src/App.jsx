@@ -17,6 +17,7 @@ import Register from 'screens/Register';
 import Create from 'screens/Create';
 import Posts from 'screens/Posts';
 import Search from 'screens/Search';
+import Post from 'screens/Post';
 
 // Components
 import Header from 'shared/components/Header';
@@ -54,6 +55,7 @@ function App() {
             <Route path={routes.create} component={Create} />
             <Route path={routes.posts} component={Posts} />
             <Route path={routes.search} component={Search} />
+            <Route path={routes.post} component={Post} />
             <Route path='*' component={NotFound} />
           </Switch>
         )}
