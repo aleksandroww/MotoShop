@@ -18,13 +18,19 @@
 
 ## Application Configurations
 
-1. Type in the terminal the following:
+1. Type in the terminal the following in both Server and Client directory:
 
 ```bash
 npm install
 ```
 
-2. Enjoy it!
+2. Type in the terminal the following in both Server and Client directory:
+
+```bash
+npm start
+```
+
+3. Enjoy it!
 
 ## Technology stack
 
