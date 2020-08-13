@@ -23,7 +23,6 @@ function Item({
   description,
   postID,
 }) {
-
   // async function deleteHandler(id) {
   //   await postService.deletePost(id);
   //   window.location.reload(false);
@@ -53,7 +52,7 @@ function Item({
         <p>Description: {description} hp</p>
         <p className={styles.price}>{price} $</p>
       </div>
-      <button onClick={deleteHandler(postID)}>
+      <button>
         <img src="" alt="delete" />
       </button>
     </li>

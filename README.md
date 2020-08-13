@@ -1,68 +1,83 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# MotoShop
 
-## Available Scripts
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="middle"> 
+        <img width="450px" src="https://res.cloudinary.com/aleksandroww97/image/upload/v1597335053/homePage_i1a9ni.jpg" alt="Profile Page" />
+      </td>
+  </tbody>
+</table>
 
-In the project directory, you can run:
+## Table of Contents
 
-### `npm start`
+1. [Application Configurations](https://github.com/aleksandroww/MotoShop#application-configurations)
+2. [Technology stack](https://github.com/aleksandroww/MotoShop#technology-stack)
+3. [Routing](https://github.com/aleksandroww/MotoShop#routing)
+4. [Data API](https://github.com/aleksandroww/MotoShop#data-api)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Application Configurations
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+1. Type in the terminal the following in both Server and Client directory:
 
-### `npm test`
+```bash
+npm install
+```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Type in the terminal the following in both Server and Client directory:
 
-### `npm run build`
+```bash
+npm start
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Enjoy it!
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Technology stack
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- React.js
+- Firebase
+- CSS
 
-### `npm run eject`
+## List of all functionalities
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. Register
+2. Login
+3. Logout
+4. Add Post
+5. Delete Post
+6. Search Post
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Routing
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+| Route     | Description                 |
+| --------- | --------------------------- |
+| /         | Public or Private Home page |
+| /login    | Login page                  |
+| /register | Register page               |
+| /search   | Search page                 |
+| /create   | Create page                 |
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## DATA API
 
-## Learn More
+###### User
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+> - **email**: Email
+> - **password**: Password
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+###### Post
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+> - **type**: Type Motorcycle
+> - **brand**: Brand
+> - **model**: Model
+> - **engine**: Engine type
+> - **power**: Power hp
+> - **capacity**: Capacity
+> - **year**: Year
+> - **kilometers**: Kilometers
+> - **price**: Price
+> - **name**: Name of the seller
+> - **number**: Contact Number
+> - **city**: City
+> - **condition**: Condition new or used
+> - **image**: Link to Cloud Firestore Storage
+> - **description**: Motorcycle description
