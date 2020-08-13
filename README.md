@@ -4,16 +4,16 @@
   <tbody>
     <tr>
       <td align="center" valign="middle"> 
-        <img width="450px" src="https://res.cloudinary.com/aleksandroww97/image/upload/v1597335053/homePage_i1a9ni.jpg" alt="Home Page" />
+        <img width="450px" src="https://res.cloudinary.com/aleksandroww97/image/upload/v1597354040/home_yxmref.jpg" alt="Home" />
       </td>
        <td align="center" valign="middle"> 
-        <img width="450px" src="https://res.cloudinary.com/aleksandroww97/image/upload/v1597353500/login_b359dx.jpg" alt="Login" />
+        <img width="450px" src="https://res.cloudinary.com/aleksandroww97/image/upload/v1597354040/login_fgmihr.jpg" alt="Login" />
       </td>
        <td align="center" valign="middle"> 
-        <img width="450px" src="https://res.cloudinary.com/aleksandroww97/image/upload/v1597353500/register_rlfnsy.jpg" alt="Register" />
+        <img width="450px" src="https://res.cloudinary.com/aleksandroww97/image/upload/v1597354039/register_ghoewr.jpg" alt="Register" />
       </td>
        <td align="center" valign="middle"> 
-        <img width="450px" src="https://res.cloudinary.com/aleksandroww97/image/upload/v1597353758/createe_jpl6ls.jpg" alt="Create" />
+        <img width="450px" src="https://res.cloudinary.com/aleksandroww97/image/upload/v1597354040/create_fh2xtp.jpg" alt="Create" />
       </td>
   </tbody>
 </table>
