@@ -3,10 +3,10 @@ import React from 'react';
 import styles from './index.module.css';
 
 // Components
-import Item from 'shared/components/Item';
+import BikeCard from 'shared/components/Bike/BikeCard';
 import Loading from 'shared/components/Loading';
 
-function ItemList({ posts, loading }) {
+function BikeList({ posts, loading }) {
   if (loading) {
     return (
       <div className={styles.loading}>
@@ -16,12 +16,12 @@ function ItemList({ posts, loading }) {
   }
 
   return (
-    <ul className={styles['item-list']}>
+    <ul className={styles['bike-list']}>
       {posts.map((post, i) => (
-        <Item {...post} key={i} />
+        <BikeCard {...post} key={i} />
       ))}
     </ul>
   );
 }
 
-export default ItemList;
+export default BikeList;

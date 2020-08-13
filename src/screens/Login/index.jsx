@@ -10,7 +10,7 @@ import { useForm } from 'react-hook-form';
 
 // Router and Routes
 import { Redirect, Link } from 'react-router-dom';
-import { routes } from 'constants/routes';
+import { routes } from 'shared/constants/routes';
 
 // Services
 import { userService } from 'shared/services';

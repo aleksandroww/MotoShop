@@ -1,12 +1,12 @@
 import { projectFirestore } from 'firebase/config';
 
 // Create Post
-export function createPost(data) {
+export function createBike(data) {
   return projectFirestore.collection('posts').add(data);
 }
 
 // Get Post by Query
-export async function getPostsByQuery(query) {
+export async function getBikesByQuery(query) {
   const queryObj = query
     .slice(1)
     .split('&')
@@ -116,17 +116,18 @@ export async function getPostsByQuery(query) {
     if (conditions.length < 2) {
       if (condition === 'isUsed') {
         allPosts = allPosts.filter((post) => post.condition === 'used');
-      } else {
+      } else if (condition === 'isNew') {
         allPosts = allPosts.filter((post) => post.condition === 'new');
       }
     }
   });
 
+  console.log(allPosts);
   return allPosts;
 }
 
 // Get personal posts
-export async function getPersonalPosts(id) {
+export async function getUserBikes(id) {
   let posts = await projectFirestore
     .collection('posts')
     .where('creator', '==', id)
@@ -143,14 +144,13 @@ export async function getPersonalPosts(id) {
 }
 
 // Get current post
-export async function getPost(id) {
+export async function getBike(id) {
   let post = await projectFirestore.collection('posts').doc(id).get();
   return post.data();
 }
 
-
 // Delete Post
-export async function deletePost(postId) {
+export async function deleteBike(postId) {
   const deletedPost = await projectFirestore
     .collection('posts')
     .doc(postId)

@@ -7,7 +7,7 @@ import 'firebase/config';
 
 // Router and Routes
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { routes } from 'constants/routes';
+import { routes } from 'shared/constants/routes';
 
 // Screens
 import Home from 'screens/Home';
@@ -15,9 +15,9 @@ import Login from 'screens/Login';
 import NotFound from 'screens/NotFound';
 import Register from 'screens/Register';
 import Create from 'screens/Create';
-import Posts from 'screens/Posts';
+import Bikes from 'screens/Bikes';
 import Search from 'screens/Search';
-import Post from 'screens/Post';
+import Bike from 'screens/Bike';
 
 // Components
 import Header from 'shared/components/Header';
@@ -53,9 +53,9 @@ function App() {
             <Route path={routes.login} component={Login} />
             <Route path={routes.register} component={Register} />
             <Route path={routes.create} component={Create} />
-            <Route path={routes.posts} component={Posts} />
+            <Route path={routes.bikes} component={Bikes} />
             <Route path={routes.search} component={Search} />
-            <Route path={routes.post} component={Post} />
+            <Route path={routes.bike} component={Bike} />
             <Route path='*' component={NotFound} />
           </Switch>
         )}

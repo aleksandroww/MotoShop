@@ -16,7 +16,7 @@ import Loading from 'shared/components/Loading';
 import { Link } from 'react-router-dom';
 
 // Routes
-import { routes } from 'constants/routes';
+import { routes } from 'shared/constants/routes';
 
 // Services
 import { userService } from 'shared/services';
@@ -54,7 +54,7 @@ function Header() {
 
   const privateLinks = [
     { text: 'Sell Bike', route: routes.create },
-    { text: 'My Posts', route: routes.posts },
+    { text: 'My Bikes', route: routes.bikes },
   ];
 
   return (

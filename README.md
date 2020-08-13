@@ -18,44 +18,39 @@
 
 ## Application Configurations
 
-1. Type in the terminal the following in both Server and Client directory:
+1. Type in the terminal the following:
 
 ```bash
 npm install
 ```
 
-2. Type in the terminal the following in both Server and Client directory:
-
-```bash
-npm start
-```
-
-3. Enjoy it!
+2. Enjoy it!
 
 ## Technology stack
 
 - React.js
 - Firebase
-- CSS
 
 ## List of all functionalities
 
 1. Register
 2. Login
 3. Logout
-4. Add Post
-5. Delete Post
-6. Search Post
+4. Add Bike
+5. Delete Bike
+6. Search Bike
 
 ## Routing
 
-| Route     | Description                 |
-| --------- | --------------------------- |
-| /         | Public or Private Home page |
-| /login    | Login page                  |
-| /register | Register page               |
-| /search   | Search page                 |
-| /create   | Create page                 |
+| Route     | Description   |
+| --------- | ------------- |
+| /         | Home page     |
+| /login    | Login page    |
+| /register | Register page |
+| /search   | Search page   |
+| /create   | Create page   |
+| /bike     | Bike page     |
+| /bikes    | Bikes page    |
 
 ## DATA API
 
@@ -64,20 +59,20 @@ npm start
 > - **email**: Email
 > - **password**: Password
 
-###### Post
+###### Bike
 
-> - **type**: Type Motorcycle
+> - **type**: Type
 > - **brand**: Brand
 > - **model**: Model
-> - **engine**: Engine type
-> - **power**: Power hp
-> - **capacity**: Capacity
+> - **engine**: Engine Type
+> - **power**: Power (hp)
+> - **capacity**: Capacity (cp)
 > - **year**: Year
 > - **kilometers**: Kilometers
 > - **price**: Price
-> - **name**: Name of the seller
-> - **number**: Contact Number
+> - **name**: Seller Name
+> - **number**: Seller Number
 > - **city**: City
-> - **condition**: Condition new or used
-> - **image**: Link to Cloud Firestore Storage
-> - **description**: Motorcycle description
+> - **condition**: Condition (New or Used)
+> - **image**: Bike Image (Firebase Cloud Storage)
+> - **description**: Bike Description

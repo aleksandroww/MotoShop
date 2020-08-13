@@ -1,4 +1,4 @@
-.item-list {
+.bike-list {
   list-style: none;
   margin-top: var(--spacing-l);
   display: grid;
@@ -13,31 +13,31 @@
 }
 
 @media screen and (max-width: 600px) {
-  .item-list {
+  .bike-list {
     grid-template-columns: repeat(1, 1fr);
   }
 }
 
 @media screen and (min-width: 600px) {
-  .item-list {
+  .bike-list {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media screen and (min-width: 800px) {
-  .item-list {
+  .bike-list {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media screen and (min-width: 1024px) {
-  .item-list {
+  .bike-list {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
 @media screen and (min-width: 1366px) {
-  .item-list {
+  .bike-list {
     grid-template-columns: repeat(5, 1fr);
   }
 }

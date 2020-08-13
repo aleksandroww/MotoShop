@@ -5,13 +5,12 @@ import styles from './index.module.css';
 // Router
 import { Link } from 'react-router-dom';
 
-function CurrentItem({ brand, model, year, power, capacity, url, price, id }) {
-
+function BikeCard({ brand, model, year, power, capacity, url, price, id }) {
   return (
-    <li className={styles.item}>
-      <Link to={`/post/${id}`}>
+    <li className={styles.bike}>
+      <Link to={`/bike/${id}`}>
         <div className={styles['img-container']}>
-          <img src={url} alt=''/>
+          <img src={url} alt='moto' />
         </div>
 
         <div className={styles.description}>
@@ -29,4 +28,4 @@ function CurrentItem({ brand, model, year, power, capacity, url, price, id }) {
   );
 }
 
-export default CurrentItem;
+export default BikeCard;

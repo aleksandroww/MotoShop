@@ -4,6 +4,6 @@ export const routes = {
   register: '/register',
   create: '/create',
   search: '/search',
-  post: '/post/:id',
-  posts: '/posts',
+  bike: '/bike/:id',
+  bikes: '/bikes',
 };

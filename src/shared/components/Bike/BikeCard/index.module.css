@@ -1,14 +1,14 @@
-.item {
+.bike {
   background: var(--white);
   overflow: hidden;
   box-shadow: 3px 3px 10px gray;
 }
 
-.item:hover {
+.bike:hover {
   box-shadow: 4px 4px 15px gray;
 }
 
-.item a {
+.bike a {
   color: var(--black);
 }
 

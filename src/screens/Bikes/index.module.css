@@ -1,0 +1,35 @@
+.bikes {
+  max-width: var(--layout-max-width);
+  padding: var(--spacing-xxl);
+  margin: 0 auto;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  margin-top: 10rem;
+}
+
+.no-bikes {
+  margin-top: var(--spacing-xxl);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.no-bikes h2 {
+  margin-bottom: var(--spacing-xxs);
+}
+
+.no-bikes a {
+  background: var(--primary-color);
+  color: var(--white);
+  padding: var(--spacing-xs);
+  border-radius: 3rem;
+  margin-top: var(--spacing-m);
+}
+
+.no-bikes a:hover {
+  box-shadow: 1px 1px 6px gray;
+}

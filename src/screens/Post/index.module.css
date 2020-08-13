@@ -1,9 +1,0 @@
-.item {
-  list-style: none;
-  margin-top: var(--spacing-l);
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: var(--spacing-m);
-  background: var(--silver);
-  padding: var(--spacing-xxs);
-}

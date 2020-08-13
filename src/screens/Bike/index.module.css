@@ -1,12 +1,8 @@
-.search {
+.bike {
+  background: var(--silver);
   max-width: var(--layout-max-width);
-  padding: var(--spacing-xxl);
   margin: 0 auto;
-}
-
-.no-posts h2 {
-  text-align: center;
-  margin-top: var(--spacing-xxl);
+  display: flex;
 }
 
 .loading {

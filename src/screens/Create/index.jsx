@@ -10,10 +10,10 @@ import { useForm } from 'react-hook-form';
 
 // Router and Routes
 import { Redirect } from 'react-router-dom';
-import { routes } from 'constants/routes';
+import { routes } from 'shared/constants/routes';
 
 // Services
-import { postService, fileService } from 'shared/services';
+import { bikeService, fileService } from 'shared/services';
 
 // Context
 import { UserContext } from 'App';
@@ -66,7 +66,7 @@ function Create() {
         async () => {
           const url = await storageRef.getDownloadURL();
 
-          await postService.createPost({
+          await bikeService.createBike({
             ...data,
             url,
             description,
@@ -257,8 +257,8 @@ function Create() {
       },
       options: [
         { value: '', text: 'Select' },
-        { value: 'isNew', text: 'New' },
-        { value: 'isUsed', text: 'Used' },
+        { value: 'new', text: 'New' },
+        { value: 'used', text: 'Used' },
       ],
     },
   ];
@@ -271,8 +271,7 @@ function Create() {
       <select
         name={select.name}
         id={select.name}
-        ref={register(select.validations)}
-      >
+        ref={register(select.validations)}>
         {select.options.map((option, y) => (
           <option name={select.name} value={option.value} key={y}>
             {option.text}
@@ -311,8 +310,7 @@ function Create() {
         name={con.name}
         id={con.name}
         onChange={con.handler}
-        ref={register(con.validations)}
-      >
+        ref={register(con.validations)}>
         {con.options.map((option, y) => (
           <option name={con.name} value={option.value} key={y}>
             {option.text}
@@ -347,27 +345,26 @@ function Create() {
             {conditions.map(renderConditions)}
 
             <div>
-              <label htmlFor="image">Upload image</label>
-              <input type="file" onChange={handleFileChange} />
+              <label htmlFor='image'>Upload image</label>
+              <input type='file' onChange={handleFileChange} />
             </div>
           </div>
 
           <div className={styles.description}>
-            <label htmlFor="additionalInfo">
+            <label htmlFor='additionalInfo'>
               More information about your bike
             </label>
             <textarea
-              type="text"
-              name="additionalInfo"
+              type='text'
+              name='additionalInfo'
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="Tell more about your bike"
-            ></textarea>
+              placeholder='Tell more about your bike'></textarea>
           </div>
 
           <div className={styles.button}>
             <Button>
               {loading ? (
-                <Loading height={45} width={45} color="#fff" />
+                <Loading height={45} width={45} color='#fff' />
               ) : (
                 'Submit'
               )}
