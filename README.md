@@ -4,13 +4,13 @@
   <tbody>
     <tr>
       <td align="center" valign="middle"> 
-        <img width="450px" src="https://res.cloudinary.com/aleksandroww97/image/upload/v1597354040/home_yxmref.jpg" alt="Home" />
+        <img width="450px" src="https://res.cloudinary.com/aleksandroww97/image/upload/v1597354223/home_jvt2jv.jpg" alt="Home" />
       </td>
        <td align="center" valign="middle"> 
-        <img width="450px" src="https://res.cloudinary.com/aleksandroww97/image/upload/v1597354040/login_fgmihr.jpg" alt="Login" />
+        <img width="450px" src="https://res.cloudinary.com/aleksandroww97/image/upload/v1597354223/login_qfu8ad.jpg" alt="Login" />
       </td>
        <td align="center" valign="middle"> 
-        <img width="450px" src="https://res.cloudinary.com/aleksandroww97/image/upload/v1597354039/register_ghoewr.jpg" alt="Register" />
+        <img width="450px" src="https://res.cloudinary.com/aleksandroww97/image/upload/v1597354223/register_ev4ysk.jpg" alt="Register" />
       </td>
        <td align="center" valign="middle"> 
         <img width="450px" src="https://res.cloudinary.com/aleksandroww97/image/upload/v1597354040/create_fh2xtp.jpg" alt="Create" />
