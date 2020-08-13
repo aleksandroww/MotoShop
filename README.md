@@ -4,7 +4,16 @@
   <tbody>
     <tr>
       <td align="center" valign="middle"> 
-        <img width="450px" src="https://res.cloudinary.com/aleksandroww97/image/upload/v1597335053/homePage_i1a9ni.jpg" alt="Profile Page" />
+        <img width="450px" src="https://res.cloudinary.com/aleksandroww97/image/upload/v1597335053/homePage_i1a9ni.jpg" alt="Home Page" />
+      </td>
+       <td align="center" valign="middle"> 
+        <img width="450px" src="https://res.cloudinary.com/aleksandroww97/image/upload/v1597353500/login_b359dx.jpg" alt="Login" />
+      </td>
+       <td align="center" valign="middle"> 
+        <img width="450px" src="https://res.cloudinary.com/aleksandroww97/image/upload/v1597353500/register_rlfnsy.jpg" alt="Register" />
+      </td>
+       <td align="center" valign="middle"> 
+        <img width="450px" src="https://res.cloudinary.com/aleksandroww97/image/upload/v1597353500/create_dtr77t.jpg" alt="Create" />
       </td>
   </tbody>
 </table>

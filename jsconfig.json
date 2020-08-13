@@ -4,9 +4,7 @@
     "paths": {
       "screens/*": ["screens/*"],
       "shared/*": ["shared/*"],
-      "firebase/*": ["firebase/*"],
-      "services/*": ["services/*"],
-      "constants/*": ["constants/*"]
+      "firebase/*": ["firebase/*"]
     }
   }
 }

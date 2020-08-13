@@ -22,6 +22,9 @@ import { UserContext } from 'App';
 import Button from 'shared/components/Button';
 import Loading from 'shared/components/Loading';
 
+//Import image types and motorcycle Info
+import info from 'motoBrands';
+
 function Create() {
   const { handleSubmit, register, errors } = useForm();
   const { user } = useContext(UserContext);
@@ -31,14 +34,11 @@ function Create() {
   const [description, setDescription] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  // Allowed img types
-  const types = ['image/png', 'image/jpeg', 'image/jpg'];
-
   // Handle image change
   const handleFileChange = (e) => {
     const image = e.target.files[0];
 
-    if (image && types.includes(image.type)) {
+    if (image && info.types.includes(image.type)) {
       setFile(image);
       setError(null);
     } else if (image) {
@@ -83,186 +83,6 @@ function Create() {
     }
   };
 
-  const selects = [
-    {
-      name: 'type',
-      text: 'Type',
-      style: 'type',
-      validations: {
-        required: 'Should select!',
-      },
-      options: [
-        { value: '', text: 'Select' },
-        { value: 'Cross', text: 'Cross' },
-        { value: 'Sport', text: 'Sport' },
-        { value: 'Naked', text: 'Naked' },
-      ],
-    },
-    {
-      name: 'brand',
-      text: 'Brand',
-      style: 'brand',
-      validations: {
-        required: 'Should select!',
-      },
-      options: [
-        { value: '', text: 'Select' },
-        { value: 'Kawasaki', text: 'Kawasaki' },
-        { value: 'Honda', text: 'Honda' },
-        { value: 'Aprilia', text: 'Aprilia' },
-        { value: 'BMW', text: 'BMW' },
-        { value: 'Suzuki', text: 'Suzuki' },
-        { value: 'KTM', text: 'KTM' },
-      ],
-    },
-    {
-      name: 'engine',
-      text: 'Engine Type',
-      style: 'engine',
-      validations: {
-        required: 'Should select!',
-      },
-      options: [
-        { value: '', text: 'Select' },
-        { value: '2', text: '2 Stroke' },
-        { value: '4', text: '4 Stroke' },
-      ],
-    },
-  ];
-
-  const inputs = [
-    {
-      name: 'model',
-      text: 'Model',
-      style: 'model',
-      type: 'text',
-      validations: {
-        required: 'Should not be empty!',
-      },
-      placeholder: 'Ninja, CBR ...',
-    },
-    {
-      name: 'year',
-      text: 'Year',
-      style: 'year',
-      type: 'text',
-      validations: {
-        required: 'Should not be empty!',
-        pattern: {
-          value: /^[2][0][0-1][0-9]$|^[2][0][2][0]/i,
-          message: 'Invalid year! Should be between 2000 and 2020!',
-        },
-      },
-    },
-    {
-      name: 'price',
-      text: 'Price',
-      style: 'price',
-      type: 'text',
-      validations: {
-        required: 'Should not be empty!',
-        pattern: {
-          value: /^\d{1,6}$/i,
-          message: 'Should be number!',
-        },
-      },
-    },
-    {
-      name: 'capacity',
-      text: 'Capacity (cm³)',
-      style: 'capacity',
-      type: 'text',
-      validations: {
-        required: 'Should not be empty!',
-        pattern: {
-          value: /^[5-9][0-9]$|^[1-9][0-9][0-9]$|^[1][0-5][0-9][0-9]$/i,
-          message: 'Should be between 50cc and 1599cc!',
-        },
-      },
-    },
-    {
-      name: 'power',
-      text: 'Power (hp)',
-      style: 'power',
-      type: 'text',
-      validations: {
-        required: 'Should not be empty!',
-        pattern: {
-          value: /^\d{1,6}$/i,
-          message: 'Should be number!',
-        },
-      },
-    },
-    {
-      name: 'kilometers',
-      text: 'Kilometers',
-      style: 'kilometers',
-      type: 'text',
-      validations: {
-        required: 'Should not be empty!',
-        pattern: {
-          value: /^\d{0,6}$/i,
-          message: 'Should be number!',
-        },
-      },
-    },
-    {
-      name: 'contact',
-      text: 'Contact Number',
-      style: 'contact',
-      type: 'text',
-      validations: {
-        required: 'Should not be empty!',
-        pattern: {
-          value: /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/i,
-          message: 'Invalid phone number!',
-        },
-      },
-    },
-    {
-      name: 'name',
-      text: 'Name',
-      style: 'name',
-      type: 'text',
-      validations: {
-        required: 'Should not be empty!',
-        pattern: {
-          value: /^[a-zA-Z]{0,85}$/i,
-          message: 'Should contain only letters!',
-        },
-      },
-    },
-    {
-      name: 'city',
-      text: 'City',
-      style: 'city',
-      type: 'text',
-      validations: {
-        required: 'Should not be empty!',
-        pattern: {
-          value: /^[a-zA-Z]{0,85}$/i,
-          message: 'Should contain only letters!',
-        },
-      },
-    },
-  ];
-
-  const conditions = [
-    {
-      name: 'condition',
-      text: 'Condition',
-      style: 'condition',
-      validations: {
-        required: 'Should select!',
-      },
-      options: [
-        { value: '', text: 'Select' },
-        { value: 'new', text: 'New' },
-        { value: 'used', text: 'Used' },
-      ],
-    },
-  ];
-
   // Render Selects
   const renderSelect = (select, i) => (
     <div key={i} className={styles[select.style]}>
@@ -271,7 +91,8 @@ function Create() {
       <select
         name={select.name}
         id={select.name}
-        ref={register(select.validations)}>
+        ref={register(select.validations)}
+      >
         {select.options.map((option, y) => (
           <option name={select.name} value={option.value} key={y}>
             {option.text}
@@ -310,7 +131,8 @@ function Create() {
         name={con.name}
         id={con.name}
         onChange={con.handler}
-        ref={register(con.validations)}>
+        ref={register(con.validations)}
+      >
         {con.options.map((option, y) => (
           <option name={con.name} value={option.value} key={y}>
             {option.text}
@@ -335,36 +157,35 @@ function Create() {
         <h1>Sell My Bike</h1>
 
         <div className={styles['create-inputs']}>
-          {selects.map(renderSelect)}
+          {info.selects.map(renderSelect)}
 
-          {inputs.map(renderInput)}
-
-          {selects.map(renderSelect)}
+          {info.inputs.map(renderInput)}
 
           <div className={styles.condition}>
-            {conditions.map(renderConditions)}
+            {info.conditions.map(renderConditions)}
 
             <div>
-              <label htmlFor='image'>Upload image</label>
-              <input type='file' onChange={handleFileChange} />
+              <label htmlFor="image">Upload image</label>
+              <input type="file" onChange={handleFileChange} />
             </div>
           </div>
 
           <div className={styles.description}>
-            <label htmlFor='additionalInfo'>
+            <label htmlFor="additionalInfo">
               More information about your bike
             </label>
             <textarea
-              type='text'
-              name='additionalInfo'
+              type="text"
+              name="additionalInfo"
               onChange={(e) => setDescription(e.target.value)}
-              placeholder='Tell more about your bike'></textarea>
+              placeholder="Tell more about your bike"
+            ></textarea>
           </div>
 
           <div className={styles.button}>
             <Button>
               {loading ? (
-                <Loading height={45} width={45} color='#fff' />
+                <Loading height={45} width={45} color="#fff" />
               ) : (
                 'Submit'
               )}
