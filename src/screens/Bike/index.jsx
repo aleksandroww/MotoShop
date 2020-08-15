@@ -81,8 +81,8 @@ function Bike({ match: { params } }) {
         </div>
 
         <div className={styles['main-info']}>
-          {options.map((option) => (
-            <p>
+          {options.map((option, i) => (
+            <p key={i}>
               <i className={option.icon} />
               {option.value}
             </p>
@@ -103,24 +103,25 @@ function Bike({ match: { params } }) {
 
         <div className={styles.contact}>
           <div>
-            {contacts.map((contact) => (
-              <p>
+            {contacts.map((contact, i) => (
+              <p key={i}>
                 <i className={contact.icon} />
                 {contact.value}
               </p>
             ))}
           </div>
-
-          <div>
-            {bike.creator === user.uid && (
-              <button
-                className={styles['delete-btn']}
-                onClick={() => deleteBike()}
-              >
-                Delete
-              </button>
-            )}
-          </div>
+          {user && (
+            <div>
+              {bike.creator === user.uid && (
+                <button
+                  className={styles['delete-btn']}
+                  onClick={() => deleteBike()}
+                >
+                  Delete
+                </button>
+              )}
+            </div>
+          )}
         </div>
       </section>
     </main>
