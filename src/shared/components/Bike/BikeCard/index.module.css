@@ -2,6 +2,7 @@
   background: var(--white);
   overflow: hidden;
   box-shadow: 3px 3px 10px gray;
+  width: 18rem;
 }
 
 .bike:hover {

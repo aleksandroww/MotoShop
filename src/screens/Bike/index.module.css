@@ -1,10 +1,121 @@
+/* Bike */
 .bike {
-  background: var(--silver);
-  max-width: var(--layout-max-width);
+  max-width: 1500px;
   margin: 0 auto;
+  display: flex;
+  padding: 0 var(--spacing-s);
+}
+
+/* Img Section */
+.img-container {
+  margin-right: var(--spacing-xxl);
+  margin-top: var(--spacing-xxl);
+}
+
+.img-container img {
+  width: 40rem;
+  height: 32rem;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.description {
+  flex: 1;
+}
+
+/* Description */
+.description > h2 {
+  text-align: center;
+  color: var(--primary-color);
+  margin: var(--spacing-xxl) 0 var(--spacing-s);
+}
+
+.description hr {
+  margin: 0 0 var(--spacing-xs);
+  border: 1px solid var(--silver);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.row .price {
+  font-size: 20px;
+}
+
+.main-info {
+  padding: 0 8rem;
+  margin-top: var(--spacing-xl);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.main-info p {
+  margin: var(--spacing-xxs);
+}
+
+.main-info i {
+  margin-right: var(--spacing-xxs);
+  color: var(--primary-color);
+}
+
+.description h3 {
+  margin: var(--spacing-xxl) 0 var(--spacing-xs);
+}
+
+.bike-description {
+  padding: var(--spacing-xxs);
+  background: var(--silver);
+}
+
+.contact {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--spacing-s);
+}
+
+.contact div {
   display: flex;
 }
 
+.contact div p {
+  font-size: 16px;
+  padding: var(--spacing-xs) var(--spacing-m);
+  background: var(--primary-color);
+  color: var(--white);
+}
+
+.contact i {
+  margin-right: var(--spacing-xxs);
+}
+
+.description-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.delete-btn {
+  height: 80%;
+  width: 6rem;
+  margin-bottom: var(--spacing-xxs);
+  cursor: pointer;
+  font-size: 16px;
+  background: var(--primary-color);
+  color: var(--white);
+  border: none;
+  box-shadow: 1px 1px 5px gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.delete-btn:hover {
+  box-shadow: 0px 0px 20px grey;
+}
+
+/* Loading */
 .loading {
   display: flex;
   justify-content: center;

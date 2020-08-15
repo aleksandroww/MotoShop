@@ -1,4 +1,4 @@
-const src = {
+const motoInfo = {
   selectSections: [
     {
       name: 'type',
@@ -257,4 +257,4 @@ const src = {
   types: ['image/png', 'image/jpeg', 'image/jpg'],
 };
 
-export default src;
+export default motoInfo;

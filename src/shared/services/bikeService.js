@@ -122,7 +122,6 @@ export async function getBikesByQuery(query) {
     }
   });
 
-  console.log(allPosts);
   return allPosts;
 }
 
@@ -150,10 +149,16 @@ export async function getBike(id) {
 }
 
 // Delete Post
-export async function deleteBike(postId) {
-  const deletedPost = await projectFirestore
+export async function deleteBike(userId, postId) {
+  const fetchedPost = await projectFirestore
     .collection('posts')
     .doc(postId)
-    .delete();
-  return deletedPost;
+    .get();
+
+  const post = fetchedPost.data();
+
+  if (post.creator === userId) {
+    await projectFirestore.collection('posts').doc(postId).delete();
+    window.location = '/';
+  }
 }

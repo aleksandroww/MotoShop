@@ -23,7 +23,7 @@ import Button from 'shared/components/Button';
 import Loading from 'shared/components/Loading';
 
 //Import image types and motorcycle Info
-import info from 'motoBrands';
+import info from 'MotoInfoConstans';
 
 function Create() {
   const { handleSubmit, register, errors } = useForm();

@@ -4,9 +4,8 @@ import styles from './index.module.css';
 
 // Components
 import Button from 'shared/components/Button';
-
 //Import Motorcycle Info
-import info from 'motoBrands';
+import info from 'MotoInfoConstans';
 
 export default function SearchForm() {
   return (

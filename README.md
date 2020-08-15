@@ -15,6 +15,12 @@
        <td align="center" valign="middle"> 
         <img width="450px" src="https://res.cloudinary.com/aleksandroww97/image/upload/v1597354040/create_fh2xtp.jpg" alt="Create" />
       </td>
+         <td align="center" valign="middle"> 
+        <img width="450px" src="https://res.cloudinary.com/aleksandroww97/image/upload/v1597505366/search_mjvfkn.jpg" alt="Search results" />
+      </td>
+         <td align="center" valign="middle"> 
+        <img width="450px" src="https://res.cloudinary.com/aleksandroww97/image/upload/v1597505366/bike_pgutyz.jpg" alt="Current bike" />
+      </td>
   </tbody>
 </table>
 
@@ -27,13 +33,13 @@
 
 ## Application Configurations
 
-1. Type in the terminal the following in both Server and Client directory:
+1. Type in the terminal the following in Client directory:
 
 ```bash
 npm install
 ```
 
-2. Type in the terminal the following in both Server and Client directory:
+2. Type in the terminal the following in Client directory:
 
 ```bash
 npm start
