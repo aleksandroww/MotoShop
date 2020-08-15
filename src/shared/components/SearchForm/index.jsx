@@ -4,6 +4,7 @@ import styles from './index.module.css';
 
 // Components
 import Button from 'shared/components/Button';
+
 //Import Motorcycle Info
 import info from 'MotoInfoConstans';
 

@@ -5,7 +5,7 @@ const motoInfo = {
       text: 'Type',
       options: [
         { value: 'all', text: 'All' },
-        { value: 'Sport bike', text: 'Sport bike' },
+        { value: 'Sport', text: 'Sport' },
         { value: 'Off-road', text: 'Off-road' },
         { value: 'Naked', text: 'Naked' },
         { value: 'Cruiser', text: 'Cruiser' },
@@ -77,7 +77,7 @@ const motoInfo = {
       },
       options: [
         { value: '', text: 'Select' },
-        { value: 'Sport bike', text: 'Sport bike' },
+        { value: 'Sport', text: 'Sport' },
         { value: 'Off-road', text: 'Off-road' },
         { value: 'Naked', text: 'Naked' },
         { value: 'Cruiser', text: 'Cruiser' },
